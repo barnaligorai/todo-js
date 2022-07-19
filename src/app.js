@@ -1,16 +1,22 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
-const morgan = require('morgan');
-const { serveStartPage } = require('./handlers/serveStartPage');
+const { serveIndexPage } = require('./handlers/serveIndexPage');
 
-const createApp = (config) => {
+const createApp = (config, logger) => {
   const { staticDir, session } = config;
+
   const app = express();
-  app.use(morgan('tiny'));
+  app.use(logger);
   app.use(cookieSession(session));
-  app.get('/', serveStartPage);
+
+  app.get('/', serveIndexPage);
 
   app.use(express.static(staticDir));
+
+  app.use((req, res) => {
+    res.status(404).send('Path not found');
+  });
+
   return app;
 }
 

@@ -1,11 +1,21 @@
 const fs = require('fs');
+const morgan = require('morgan');
 
 const { createApp } = require('./src/app');
+require('dotenv').config();
 
 const main = (PORT) => {
-  const session = JSON.parse(fs.readFileSync('data/secret.json', 'utf-8'));
-  const config = { staticDir: 'public', session };
-  const app = createApp(config);
+  const { COOKIE_NAME, COOKIE_KEY, STATIC_DIR } = process.env;
+  const config = {
+    staticDir: STATIC_DIR,
+    session: {
+      name: COOKIE_NAME,
+      keys: [COOKIE_KEY]
+    }
+  };
+
+  const logger = morgan('tiny');
+  const app = createApp(config, logger);
   app.listen(PORT, () =>
     console.log(`App listening on ${8080}`));
 };
