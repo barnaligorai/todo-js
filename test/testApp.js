@@ -8,9 +8,10 @@ const doNothing = (req, res, next) => {
 describe('Test todo', () => {
   let config;
   let myApp;
+  let users = { bani: { name: 'bani', password: 'abcd' } };
 
   beforeEach(() => {
-    config = { staticDir: 'public', session: { name: 'mySession', keys: ['myKey'] } };
+    config = { staticDir: 'public', session: { name: 'mySession', keys: ['myKey'] }, users };
 
     myApp = createApp(config, doNothing);
   });
@@ -29,8 +30,27 @@ describe('Test todo', () => {
       request(myApp)
         .get('/')
         .expect('content-type', /html/)
-        .expect(/login/)
+        .expect(/Stay/)
         .expect(200, done);
+    });
+
+  });
+
+  describe('POST /sign-up', () => {
+    it('should register the user for POST /sign-up when the user is new', (done) => {
+      request(myApp)
+        .post('/sign-up')
+        .send('name=barnali&&password=abcd')
+        .expect(/success/)
+        .expect(200, done)
+    });
+
+    it('should give user exists error for POST /sign-up when the user already exists', (done) => {
+      request(myApp)
+        .post('/sign-up')
+        .send('name=bani&&password=abcd')
+        .expect(/Exists/)
+        .expect(409, done);
     });
   });
 });

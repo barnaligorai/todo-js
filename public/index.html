@@ -2,7 +2,9 @@
   <head>
     <title>TODO</title>
     <link rel="stylesheet" href="styles/startPage.css">
-    <script src="js/authenticate.js"></script>
+    <script src="js/signUp.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/makeRequest.js"></script>
   </head>
   <body>
     <div class="body">
@@ -22,13 +24,13 @@
               New user?
             </div>
             <div id="signUp-message" class="message-area"> </div>
-            <form>
+            <form id="signUp-form">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
               
               <input type="text" name="password" id="password" placeholder="Password" required>
 
               <section>
-                <button type="submit">Sign Up</button>
+                <button type="button" id="register">Sign Up</button>
               </section>
             </form>
           </div>
@@ -44,7 +46,7 @@
               <input type="text" name="password" id="password" placeholder="Password" required>
     
               <section>
-                <button type="button" >Log in</button>
+                <button type="button" id="login-button">Log in</button>
               </section>
             </form>
           </div>

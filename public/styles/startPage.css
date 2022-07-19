@@ -50,6 +50,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   padding: 1em;
+  row-gap: 1em;
 }
 
 button{
@@ -62,7 +63,6 @@ button{
 form {
   width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   height: 80%;
@@ -75,4 +75,10 @@ form > *{
 
 input {
   height: 2em;
+}
+
+.message-area {
+  height: 1em;
+  width: 90%;
+  font-size: 0.8em;
 }

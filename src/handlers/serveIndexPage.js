@@ -3,6 +3,7 @@ const serveIndexPage = (req, res, next) => {
     res.redirect(302, '/home');
     return;
   }
+
   next();
 };
 
