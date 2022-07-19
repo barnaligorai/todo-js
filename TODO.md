@@ -1,13 +1,17 @@
 # TODO
 
-  - [ ] Create script for log in
-  - [ ] Handle Login
   - [ ] Create the home page
+  - [ ] Create a list
+  - [ ] Create an item
   - [ ] Persist user details
 
 
 # DONE
 
+  - [x] Remove script for log in
+  - [x] Remove script for sign up
+  - [x] Handle Login
+  - [x] Handle Sign up
   - [x] Handle Sign up
   - [x] Create script for sign up
   - [x] Set up test for index page

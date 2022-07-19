@@ -1,21 +1,17 @@
-const loginHandler = (users) => (req, res, next) => {
-  if (!req.session.isNew) {
-    res.status(200).send({ message: "Already logged in" });
-    return;
-  }
-
+const newLogin = (users) => (req, res, next) => {
   const { name, password } = req.body;
   if (!users[name]) {
-    res.status(404).send({ message: 'Username doesn\'t exists' });
+    res.redirect(302, '/login?err=601');
     return;
   }
 
   if (users[name].password !== password) {
-    res.status(401).send({ message: 'Username doesn\'t exists' });
+    res.redirect(302, '/login?err=602');
     return;
   }
 
   req.session.name = name;
-  res.status(200).send({ message: "Successfully logged in" });
+  res.redirect(302, '/home');
 };
-module.exports = { loginHandler };
+
+module.exports = { newLogin };

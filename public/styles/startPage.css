@@ -53,7 +53,7 @@ h3 {
   row-gap: 1em;
 }
 
-button{
+.button {
   background-color: #06a0d4;
   color: white;
   width: 100%;

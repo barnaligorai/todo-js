@@ -1,18 +1,13 @@
 const signUpHandler = (users) => (req, res, next) => {
-  if (!req.session.isNew) {
-    res.redirect('/home');
-    return;
-  }
-
   const { name, password } = req.body;
 
   if (users[name]) {
-    res.status(409).send({ status: 'Already Exists' });
+    res.redirect('/sign-up?err=605');
     return;
   }
 
   users[name] = { name, password };
-  res.status(200).send({ status: 'success' });
+  res.redirect(302, '/sign-up?err=606');
 };
 
 module.exports = { signUpHandler };

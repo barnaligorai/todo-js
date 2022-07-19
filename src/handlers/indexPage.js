@@ -1,10 +1,8 @@
-<html>
+const indexPage = (signUpMessage = '', loginMessage = '') => {
+  const template = `<html>
   <head>
     <title>TODO</title>
     <link rel="stylesheet" href="styles/startPage.css">
-    <script src="js/signUp.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/utils.js"></script>
   </head>
   <body>
     <div class="body">
@@ -23,14 +21,14 @@
             <div class="auth-heading">
               New user?
             </div>
-            <div id="signUp-message" class="message-area"> </div>
-            <form id="signUp-form">
+            <div id="signUp-message" class="message-area">${signUpMessage}</div>
+            <form id="signUp-form" action="/sign-up" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
               
               <input type="text" name="password" id="password" placeholder="Password" required>
 
               <section>
-                <button type="button" id="register">Sign Up</button>
+                <Input type="submit" id="register" class="button" value="Sign Up"/>
               </section>
             </form>
           </div>
@@ -39,14 +37,14 @@
             <div class="auth-heading">
               Already have an account?
             </div>
-            <div id="login-message" class="message-area"> </div>
-            <form id="login-form">
+            <div id="login-message" class="message-area">${loginMessage}</div>
+            <form id="login-form" action="/login" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
               
               <input type="text" name="password" id="password" placeholder="Password" required>
     
               <section>
-                <button type="button" id="login-button">Log in</button>
+                <input type="submit" class="button" id="login-button" value="Login"/>
               </section>
             </form>
           </div>
@@ -54,4 +52,9 @@
       </main>
     </div>
   </body>
-</html>
+</html>`;
+
+  return template;
+};
+
+module.exports = { indexPage };

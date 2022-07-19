@@ -1,10 +1,13 @@
+const { indexPage } = require("./indexPage");
+
 const serveIndexPage = (req, res, next) => {
   if (!req.session.isNew) {
     res.redirect(302, '/home');
     return;
   }
 
-  next();
+  res.type('html');
+  res.end(indexPage());
 };
 
 module.exports = { serveIndexPage };
