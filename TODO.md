@@ -1,8 +1,6 @@
 # TODO
 
-  - [ ] Create script for sign up
   - [ ] Create script for log in
-  - [ ] Handle Sign up
   - [ ] Handle Login
   - [ ] Create the home page
   - [ ] Persist user details
@@ -10,6 +8,8 @@
 
 # DONE
 
+  - [x] Handle Sign up
+  - [x] Create script for sign up
   - [x] Set up test for index page
   - [x] Create the index page
   - [x] Use dotenv module for config

@@ -1,3 +1,7 @@
+const showMessage = (element, innerText) => {
+  element.innerText = innerText;
+};
+
 const makeReq = ({ url, method, body = '' }, cb) => {
   const xhr = new XMLHttpRequest();
 
@@ -7,4 +11,9 @@ const makeReq = ({ url, method, body = '' }, cb) => {
 
   xhr.open(method, url);
   xhr.send(body);
+};
+
+window.onload = () => {
+  mainSignup();
+  mainLogin();
 };

@@ -1,7 +1,3 @@
-const showMessage = (element, innerText) => {
-  element.innerText = innerText;
-};
-
 const displaySignUpMessage = (status, res) => {
   const messageBlock = document.querySelector('#signUp-message');
   let message = 'Successfully signed up'
@@ -38,9 +34,7 @@ const signUpRequest = (event) => {
   makeReq(req, displaySignUpMessage);
 };
 
-const main = () => {
+const mainSignup = () => {
   const button = document.querySelector('#register');
   button.onclick = signUpRequest;
 };
-
-window.onload = main;

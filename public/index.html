@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="styles/startPage.css">
     <script src="js/signUp.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/makeRequest.js"></script>
+    <script src="js/utils.js"></script>
   </head>
   <body>
     <div class="body">
@@ -39,8 +39,8 @@
             <div class="auth-heading">
               Already have an account?
             </div>
-            <div id="signUp-message" class="message-area"> </div>
-            <form>
+            <div id="login-message" class="message-area"> </div>
+            <form id="login-form">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
               
               <input type="text" name="password" id="password" placeholder="Password" required>
