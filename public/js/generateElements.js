@@ -25,18 +25,27 @@ const createList = (id, title, tasks) => {
       ['div.delete', 'deleteIcon']],
   ];
   const listElement = createElementTree(listTemplate);
+  const tasksElement = createTasks(tasks);
+
   const addItemForm = document.createElement('form');
   addItemForm.className = 'add-item';
 
   const inputElement = document.createElement('input');
-  inputElement.placeholder = 'Add what\'s need to be done'
-  inputElement.name = 'task'
+  inputElement.placeholder = 'Add what\'s need to be done';
+  inputElement.name = 'task';
+
+  inputElement.onkeydown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      addNewItemReq(event, id, tasksElement);
+      inputElement.value = '';
+    }
+  };
 
   addItemForm.appendChild(inputElement);
   listElement.appendChild(addItemForm);
 
-  const tasksElement = createTasks(tasks);
-  listElement.appendChild(tasksElement)
+  listElement.appendChild(tasksElement);
   return listElement;
 };
 
@@ -45,27 +54,33 @@ const checkbox = (done) => {
   return `<input type="checkbox" ${state}></input>`;
 };
 
+const createSingleTask = (item) => {
+  const { id, done, task } = item;
+  const taskTemplate = [
+    `li.item#${id}`,
+    ['div.task', task],
+    ['div.delete-icon', 'deleteIcon']
+  ];
+
+  const taskElement = createElementTree(taskTemplate);
+  const checkboxElement = document.createElement('input');
+  checkboxElement.type = 'checkbox';
+  checkboxElement.classList = 'checkbox'
+
+  if (done) {
+    checkboxElement.checked = true;
+  }
+
+  taskElement.prepend(checkboxElement);
+  return taskElement;
+};
+
 const createTasks = (tasks) => {
   const tasksElement = document.createElement('ul');
   tasksElement.className = 'items';
 
   tasks.reverse().forEach(item => {
-    const { id, done, task } = item;
-    const taskTemplate = [
-      `li.item#${id}`,
-      ['div.task', task],
-      ['div.delete-icon', 'deleteIcon']
-    ];
-
-    const taskElement = createElementTree(taskTemplate);
-    const checkboxElement = document.createElement('input');
-    checkboxElement.type = 'checkbox';
-
-    if (done) {
-      checkboxElement.checked = true;
-    }
-
-    taskElement.prepend(checkboxElement);
+    const taskElement = createSingleTask(item);
     tasksElement.appendChild(taskElement);
   });
 

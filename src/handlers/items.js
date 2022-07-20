@@ -1,6 +1,6 @@
 const createItem = (id, listId, task) => {
   return {
-    id,
+    id: 'i' + id,
     listId,
     task,
     done: false,
@@ -21,6 +21,7 @@ class Items {
     const item = createItem(this.#id, listId, task);
     this.#db[this.#id] = item;
     this.#id++;
+    return item;
   }
 
   getItems() {

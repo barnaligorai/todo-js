@@ -5,7 +5,7 @@
 }
 
 .body{
-  background-color: antiquewhite;
+  background-color: rgba(176, 224, 230, 0.592);
   width: 90%;
   margin: auto;
 }
@@ -17,6 +17,7 @@
 main{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .logout {
@@ -39,4 +40,51 @@ main{
   height: 400px;
   background-color: white;
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5em;
+  row-gap: 1em;
+}
+
+#add-list :first-child{
+width: 200px;
+}
+
+.list-header{
+  width: 100%;
+  background-color: skyblue;
+  display: flex;
+  justify-content: end;
+}
+
+.list-header :first-child{
+  width: 80%;
+  text-align: center;
+}
+
+.add-item{
+  width: 100%;
+  text-align: center;
+}
+
+.add-item > input {
+  width: 80%;
+}
+
+.items{
+  width: 80%;
+}
+
+.items > li{
+  list-style: none;
+  display: flex;
+  column-gap: 1em;
+  border: 1px solid lightgray;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.items .task {
+  width: 60%;
 }

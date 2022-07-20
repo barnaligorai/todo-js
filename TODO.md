@@ -1,7 +1,5 @@
 # TODO
 
-  - [ ] Create an item from front end
-  - [ ] Display the added item from front end
   - [ ] Delete a list
   - [ ] Delete an item
   - [ ] Mark an item
@@ -9,6 +7,8 @@
 
 # DONE
 
+  - [x] Create an item from front end
+  - [x] Display the added item from front end
   - [x] Display all the items of a saved list 
   - [x] Add new list from front end
   - [x] Serve lists details

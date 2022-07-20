@@ -7,7 +7,7 @@ const sendRequest = ({ method, url, body = '', headers = [] }, callBack) => {
     xhr.setRequestHeader(header, value);
   });
 
-  xhr.send(JSON.stringify(body));
+  xhr.send(body);
 };
 
 const displayNewAddedList = (status, res) => {
@@ -25,13 +25,16 @@ const newListReq = (event) => {
   const formElement = document.getElementById('add-list');
   const formData = new FormData(formElement);
   const title = formData.get('title');
+  const body = { title };
+
   const req = {
     url: '/add-list',
     method: 'POST',
     headers: [{ header: 'content-type', value: 'application/json' }],
-    body: { title }
+    body: JSON.stringify(body)
   };
   sendRequest(req, displayNewAddedList);
+  formElement.reset();
 };
 
 const addNewList = () => {

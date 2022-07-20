@@ -1,6 +1,6 @@
 const createList = (id, title, createdBy) => {
   return {
-    id,
+    id: 'l' + id,
     title,
     createdBy,
     createdOn: new Date().getTime()

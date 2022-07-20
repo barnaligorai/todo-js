@@ -1,18 +1,18 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
 
-const { newLogin } = require('./handlers/loginHandler');
-const { serveIndexPage } = require('./handlers/serveIndexPage');
-const { signUpHandler } = require('./handlers/signUpHandler');
+const { newLogin } = require('./handlers/loginHandler.js');
+const { serveIndexPage } = require('./handlers/serveIndexPage.js');
+const { signUpHandler } = require('./handlers/signUpHandler.js');
 const { serveHomePage } = require('./handlers/serveHomePage.js');
 const { notFoundHandler } = require('./handlers/notFoundHandler.js');
-const { loginErrorHandler, signUpErrorHandler } = require('./handlers/authErrorHandler');
-const { Lists } = require('./handlers/lists');
-const { Items } = require('./handlers/items');
-const { addNewList } = require('./handlers/addNewList');
-const { serveLists } = require('./handlers/serveLists');
-const { logout } = require('./handlers/logout');
-
+const { loginErrorHandler, signUpErrorHandler } = require('./handlers/authErrorHandler.js');
+const { Lists } = require('./handlers/lists.js');
+const { Items } = require('./handlers/items.js');
+const { addNewList } = require('./handlers/addNewList.js');
+const { serveLists } = require('./handlers/serveLists.js');
+const { logout } = require('./handlers/logout.js');
+const { addNewItem } = require('./handlers/addNewItem.js');
 
 const alreadyLoggedIn = (req, res, next) => {
   if (!req.session.isNew) {
@@ -24,58 +24,8 @@ const alreadyLoggedIn = (req, res, next) => {
 
 const createApp = (config, logger) => {
   const { staticDir, session, users } = config;
-  // const itemsDb = {};
-  // const listsDb = {};
-  const listsDb = {
-    0: {
-      id: 0,
-      title: 'shopping',
-      createdBy: 'bani',
-      createdOn: '1/1/1'
-    },
-    1: {
-      id: 1,
-      title: 'shopping',
-      createdBy: 'sourav',
-      createdOn: '1/1/1'
-    },
-    2: {
-      id: 2,
-      title: 'medicine',
-      createdBy: 'sourav',
-      createdOn: '1/1/1'
-    }
-  };
-  const itemsDb = {
-    0: {
-      id: 0,
-      listId: 0,
-      task: 'a',
-      createdOn: '1/2/3',
-      done: true
-    },
-    1: {
-      id: 1,
-      listId: 0,
-      task: 'b',
-      createdOn: '1/2/3',
-      done: false
-    },
-    2: {
-      id: 2,
-      listId: 1,
-      task: 'c',
-      createdOn: '1/2/3',
-      done: false
-    },
-    3: {
-      id: 3,
-      listId: 2,
-      task: 'd',
-      createdOn: '1/2/3',
-      done: false
-    }
-  };
+  const itemsDb = {};
+  const listsDb = {};
 
   const lists = new Lists(listsDb);
   const items = new Items(itemsDb);
@@ -100,6 +50,7 @@ const createApp = (config, logger) => {
   app.get('/home', serveHomePage(lists, items));
 
   app.post('/add-list', addNewList(lists));
+  app.post('/add-item', addNewItem(items));
 
   app.use(express.static(staticDir));
 
