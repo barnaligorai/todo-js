@@ -1,13 +1,19 @@
 # TODO
 
-  - [ ] Create the home page
-  - [ ] Create a list
-  - [ ] Create an item
+  - [ ] Create an item from front end
+  - [ ] Display the added item from front end
+  - [ ] Delete a list
+  - [ ] Delete an item
+  - [ ] Mark an item
   - [ ] Persist user details
-
 
 # DONE
 
+  - [x] Add new list from front end
+  - [x] Serve lists details
+  - [x] Create lists entity
+  - [x] Create items entity
+  - [x] Create the home page
   - [x] Remove script for log in
   - [x] Remove script for sign up
   - [x] Handle Login

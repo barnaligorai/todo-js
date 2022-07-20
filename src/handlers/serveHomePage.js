@@ -1,10 +1,10 @@
-const serveHomePage = (lists, items) => (req, res) => {
+const serveHomePage = (lists, items) => (req, res, next) => {
   if (req.session.isNew) {
-    res.redirect('/');
+    res.redirect(302, '/');
     return;
   }
-
-  res.end('home');
+  req.url = '/home.html';
+  next();
 };
 
 module.exports = { serveHomePage };

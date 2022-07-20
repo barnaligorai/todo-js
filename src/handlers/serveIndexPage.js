@@ -1,4 +1,4 @@
-const { indexPage } = require("./indexPage");
+const { indexPage } = require('./indexPage.js');
 
 const serveIndexPage = (req, res, next) => {
   if (!req.session.isNew) {

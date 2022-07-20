@@ -1,0 +1,42 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body{
+  background-color: antiquewhite;
+  width: 90%;
+  margin: auto;
+}
+
+.body > header > h1 {
+ text-align: center;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2em;
+  align-items: flex-end;
+}
+
+.lists {
+  display: flex;
+  column-gap: 2em;
+  flex-wrap: wrap;
+  row-gap: 2em;
+  justify-content: center;
+  padding: 2em;
+}
+
+.list {
+  height: 400px;
+  background-color: white;
+  width: 400px;
+}
