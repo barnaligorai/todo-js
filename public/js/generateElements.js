@@ -22,10 +22,19 @@ const createList = (id, title, tasks) => {
     `div.list#${id}`,
     ['div.list-header',
       ['div.title', title],
-      ['div.delete', 'deleteIcon']],
+      ['div.delete',
+        ['img.delete-icon', 'deleteIcon']]],
   ];
   const listElement = createElementTree(listTemplate);
   const tasksElement = createTasks(tasks);
+
+  const deleteElement = listElement.getElementsByClassName('delete-icon')[0];
+  const deleteIcon = document.createElement('img');
+  deleteIcon.src = 'images/delete.png';
+  deleteElement.replaceWith(deleteIcon);
+
+
+  deleteIcon.onclick = (event) => deleteList(event, listElement);
 
   const addItemForm = document.createElement('form');
   addItemForm.className = 'add-item';

@@ -14,6 +14,7 @@ const { serveLists } = require('./handlers/serveLists.js');
 const { logout } = require('./handlers/logout.js');
 const { addNewItem } = require('./handlers/addNewItem.js');
 const { markItem } = require('./handlers/markItem.js');
+const { deleteList } = require('./handlers/deleteList.js');
 
 const alreadyLoggedIn = (req, res, next) => {
   if (!req.session.isNew) {
@@ -53,6 +54,7 @@ const createApp = (config, logger) => {
   app.post('/add-item', addNewItem(items));
 
   app.post('/item/mark/:itemId', markItem(items));
+  app.post('/list/delete/:listId', deleteList(lists));
 
   app.use(express.static(staticDir));
 

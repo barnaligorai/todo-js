@@ -31,6 +31,11 @@ class Lists {
       createdBy === name);
   }
 
+  remove(id) {
+    const list = this.#db[id];
+    delete this.#db[id];
+    return list;
+  }
 }
 
 module.exports = { Lists };
