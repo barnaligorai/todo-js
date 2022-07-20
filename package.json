@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha",
-    "setup": "node .setup.js"
+    "setup": "cp .sample.env .env"
   },
   "repository": {
     "type": "git",
