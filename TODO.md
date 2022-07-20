@@ -2,11 +2,11 @@
 
   - [ ] Delete a list
   - [ ] Delete an item
-  - [ ] Mark an item
   - [ ] Persist user details
 
 # DONE
 
+  - [x] Mark an item
   - [x] Create an item from front end
   - [x] Display the added item from front end
   - [x] Display all the items of a saved list 

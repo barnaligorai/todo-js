@@ -71,6 +71,8 @@ const createSingleTask = (item) => {
     checkboxElement.checked = true;
   }
 
+  checkboxElement.onclick = (event) => { markItem(event, taskElement) };
+
   taskElement.prepend(checkboxElement);
   return taskElement;
 };

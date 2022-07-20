@@ -19,7 +19,7 @@ class Items {
 
   addItem(listId, task) {
     const item = createItem(this.#id, listId, task);
-    this.#db[this.#id] = item;
+    this.#db[item.id] = item;
     this.#id++;
     return item;
   }
@@ -30,6 +30,12 @@ class Items {
 
   find(id) {
     return Object.values(this.#db).filter(({ listId }) => listId === id);
+  }
+
+  mark(taskId) {
+    const task = this.#db[taskId];
+    task.done = !task.done;
+    return task.done ? 'done' : 'undone';
   }
 }
 

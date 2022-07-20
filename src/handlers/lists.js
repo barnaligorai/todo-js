@@ -17,7 +17,7 @@ class Lists {
 
   addList(title, createdBy) {
     const list = createList(this.#id, title, createdBy);
-    this.#db[this.#id] = list;
+    this.#db[list.id] = list;
     this.#id++;
     return list;
   }

@@ -13,6 +13,7 @@ const { addNewList } = require('./handlers/addNewList.js');
 const { serveLists } = require('./handlers/serveLists.js');
 const { logout } = require('./handlers/logout.js');
 const { addNewItem } = require('./handlers/addNewItem.js');
+const { markItem } = require('./handlers/markItem.js');
 
 const alreadyLoggedIn = (req, res, next) => {
   if (!req.session.isNew) {
@@ -45,12 +46,13 @@ const createApp = (config, logger) => {
   app.post('/login', alreadyLoggedIn, newLogin(users));
   app.post('/sign-up', alreadyLoggedIn, signUpHandler(users));
 
-  app.get('/home/all-lists', serveLists(lists, items));
-
   app.get('/home', serveHomePage(lists, items));
+  app.get('/home/all-lists', serveLists(lists, items));
 
   app.post('/add-list', addNewList(lists));
   app.post('/add-item', addNewItem(items));
+
+  app.post('/item/mark/:itemId', markItem(items));
 
   app.use(express.static(staticDir));
 
