@@ -24,8 +24,58 @@ const alreadyLoggedIn = (req, res, next) => {
 
 const createApp = (config, logger) => {
   const { staticDir, session, users } = config;
-  const itemsDb = {};
-  const listsDb = {};
+  // const itemsDb = {};
+  // const listsDb = {};
+  const listsDb = {
+    0: {
+      id: 0,
+      title: 'shopping',
+      createdBy: 'bani',
+      createdOn: '1/1/1'
+    },
+    1: {
+      id: 1,
+      title: 'shopping',
+      createdBy: 'sourav',
+      createdOn: '1/1/1'
+    },
+    2: {
+      id: 2,
+      title: 'medicine',
+      createdBy: 'sourav',
+      createdOn: '1/1/1'
+    }
+  };
+  const itemsDb = {
+    0: {
+      id: 0,
+      listId: 0,
+      task: 'a',
+      createdOn: '1/2/3',
+      done: true
+    },
+    1: {
+      id: 1,
+      listId: 0,
+      task: 'b',
+      createdOn: '1/2/3',
+      done: false
+    },
+    2: {
+      id: 2,
+      listId: 1,
+      task: 'c',
+      createdOn: '1/2/3',
+      done: false
+    },
+    3: {
+      id: 3,
+      listId: 2,
+      task: 'd',
+      createdOn: '1/2/3',
+      done: false
+    }
+  };
 
   const lists = new Lists(listsDb);
   const items = new Items(itemsDb);

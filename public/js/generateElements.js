@@ -17,18 +17,57 @@ const createElementTree = (elements) => {
   return parent;
 };
 
-const createList = (id, title) => {
+const createList = (id, title, tasks) => {
   const listTemplate = [
     `div.list#${id}`,
-    [
-      'div.list-header',
+    ['div.list-header',
       ['div.title', title],
-      ['div.delete', 'deleteIcon']
-    ],
-    [
-      'ul.items', 'Add what\'s need to be doing'
-    ]
+      ['div.delete', 'deleteIcon']],
   ];
+  const listElement = createElementTree(listTemplate);
+  const addItemForm = document.createElement('form');
+  addItemForm.className = 'add-item';
 
-  return createElementTree(listTemplate);
+  const inputElement = document.createElement('input');
+  inputElement.placeholder = 'Add what\'s need to be done'
+  inputElement.name = 'task'
+
+  addItemForm.appendChild(inputElement);
+  listElement.appendChild(addItemForm);
+
+  const tasksElement = createTasks(tasks);
+  listElement.appendChild(tasksElement)
+  return listElement;
+};
+
+const checkbox = (done) => {
+  const state = done ? 'checked' : '';
+  return `<input type="checkbox" ${state}></input>`;
+};
+
+const createTasks = (tasks) => {
+  const tasksElement = document.createElement('ul');
+  tasksElement.className = 'items';
+
+  tasks.reverse().forEach(item => {
+    const { id, done, task } = item;
+    const taskTemplate = [
+      `li.item#${id}`,
+      ['div.task', task],
+      ['div.delete-icon', 'deleteIcon']
+    ];
+
+    const taskElement = createElementTree(taskTemplate);
+    const checkboxElement = document.createElement('input');
+    checkboxElement.type = 'checkbox';
+
+    if (done) {
+      checkboxElement.checked = true;
+    }
+
+    taskElement.prepend(checkboxElement);
+    tasksElement.appendChild(taskElement);
+  });
+
+  return tasksElement;
 };

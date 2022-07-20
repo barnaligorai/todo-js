@@ -3,6 +3,7 @@ const createItem = (id, listId, task) => {
     id,
     listId,
     task,
+    done: false,
     createdOn: new Date().getTime()
   };
 };
@@ -13,7 +14,7 @@ class Items {
 
   constructor(items) {
     this.#db = items;
-    this.#id = 0;
+    this.#id = Object.keys(items).length;
   }
 
   addItem(listId, task) {

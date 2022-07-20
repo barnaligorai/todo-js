@@ -9,6 +9,7 @@
 
 # DONE
 
+  - [x] Display all the items of a saved list 
   - [x] Add new list from front end
   - [x] Serve lists details
   - [x] Create lists entity

@@ -10,13 +10,13 @@ const sendRequest = ({ method, url, body = '', headers = [] }, callBack) => {
   xhr.send(JSON.stringify(body));
 };
 
-const display = (status, res) => {
+const displayNewAddedList = (status, res) => {
   if (status !== 200) {
     console.log('error');
     return;
   }
   const { id, title } = JSON.parse(res);
-  const newList = createList(id, title);
+  const newList = createList(id, title, []);
   const lists = document.getElementsByClassName('lists')[0];
   lists.prepend(newList);
 };
@@ -31,7 +31,7 @@ const newListReq = (event) => {
     headers: [{ header: 'content-type', value: 'application/json' }],
     body: { title }
   };
-  sendRequest(req, display);
+  sendRequest(req, displayNewAddedList);
 };
 
 const addNewList = () => {
@@ -40,7 +40,6 @@ const addNewList = () => {
 };
 
 const generateHomePage = (status, res) => {
-  console.log('status', status);
   if (status !== 200) {
     console.log('Something went wrong');
     return;
