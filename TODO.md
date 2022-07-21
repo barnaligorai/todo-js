@@ -1,11 +1,11 @@
 # TODO
 
-  - [ ] Delete an item
   - [ ] Persist user details
   - [ ] Persist items and lists
 
 # DONE
 
+  - [x] Delete an item
   - [x] Delete a list
   - [x] Mark an item
   - [x] Create an item from front end

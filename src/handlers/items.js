@@ -37,6 +37,12 @@ class Items {
     task.done = !task.done;
     return task.done ? 'done' : 'undone';
   }
+
+  remove(taskId) {
+    const task = this.#db[taskId];
+    delete this.#db[taskId];
+    return task;
+  }
 }
 
 module.exports = { Items };

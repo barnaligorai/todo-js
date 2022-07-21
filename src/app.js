@@ -15,6 +15,7 @@ const { logout } = require('./handlers/logout.js');
 const { addNewItem } = require('./handlers/addNewItem.js');
 const { markItem } = require('./handlers/markItem.js');
 const { deleteList } = require('./handlers/deleteList.js');
+const { deleteItem } = require('./handlers/deleteItem.js');
 
 const alreadyLoggedIn = (req, res, next) => {
   if (!req.session.isNew) {
@@ -42,9 +43,11 @@ const createApp = (config, logger) => {
   app.get('/', serveIndexPage);
 
   app.get('/logout', logout);
+
   app.get('/login', alreadyLoggedIn, loginErrorHandler);
-  app.get('/sign-up', alreadyLoggedIn, signUpErrorHandler);
   app.post('/login', alreadyLoggedIn, newLogin(users));
+
+  app.get('/sign-up', alreadyLoggedIn, signUpErrorHandler);
   app.post('/sign-up', alreadyLoggedIn, signUpHandler(users));
 
   app.get('/home', serveHomePage(lists, items));
@@ -54,6 +57,7 @@ const createApp = (config, logger) => {
   app.post('/add-item', addNewItem(items));
 
   app.post('/item/mark/:itemId', markItem(items));
+  app.post('/item/delete/:itemId', deleteItem(items));
   app.post('/list/delete/:listId', deleteList(lists));
 
   app.use(express.static(staticDir));
@@ -61,6 +65,6 @@ const createApp = (config, logger) => {
   app.use(notFoundHandler);
 
   return app;
-}
+};
 
 module.exports = { createApp };

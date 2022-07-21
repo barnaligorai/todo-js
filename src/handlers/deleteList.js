@@ -1,6 +1,6 @@
 const deleteList = (lists) => (req, res) => {
-  const deleted = lists.remove(req.params.listId);
-  res.json({ deleted });
+  const deletedList = lists.remove(req.params.listId);
+  res.json({ deletedList });
 
   // delete items of that particular list
 };
