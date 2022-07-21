@@ -21,9 +21,7 @@ const alreadyLoggedIn = (req, res, next) => {
 };
 
 const createApp = (config, logger) => {
-  const { staticDir, session, users } = config;
-  const itemsDb = {};
-  const listsDb = {};
+  const { staticDir, session, users, itemsDb, listsDb } = config;
 
   const lists = new Lists(listsDb);
   const items = new Items(itemsDb);
@@ -47,7 +45,7 @@ const createApp = (config, logger) => {
 
   app.use(['/list', '/item'], todoHandler(lists, items));
 
-  app.get('/home', serveHomePage(lists, items));
+  app.get('/home', serveHomePage);
   app.use(express.static(staticDir));
   app.use(notFoundHandler);
 

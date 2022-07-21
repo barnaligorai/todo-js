@@ -79,7 +79,7 @@ const createList = (id, title, tasks) => {
   addItemForm.className = 'add-item';
 
   const inputElement = document.createElement('input');
-  inputElement.placeholder = 'Add what\'s need to be done';
+  inputElement.placeholder = 'What needs to be done';
   inputElement.name = 'task';
   inputElement.onkeydown = (event) => {
     if (event.key === 'Enter') {

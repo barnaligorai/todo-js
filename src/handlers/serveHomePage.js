@@ -1,8 +1,9 @@
-const serveHomePage = (lists, items) => (req, res, next) => {
+const serveHomePage = (req, res, next) => {
   if (req.session.isNew) {
     res.redirect(302, '/');
     return;
   }
+
   req.url = '/home.html';
   next();
 };

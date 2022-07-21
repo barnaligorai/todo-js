@@ -10,9 +10,9 @@ const createList = (id, title, createdBy) => {
 class Lists {
   #db;
   #id;
-  constructor(lists) {
+  constructor({ id, lists }) {
     this.#db = lists;
-    this.#id = Object.keys(lists).length;
+    this.#id = id;
   }
 
   addList(title, createdBy) {

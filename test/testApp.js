@@ -13,7 +13,9 @@ describe('Test todo', () => {
     config = {
       staticDir: 'public',
       session: { name: 'mySession', keys: ['myKey'] },
-      users: { bani: { name: 'bani', password: 'abcd' } }
+      users: { bani: { name: 'bani', password: 'abcd' } },
+      itemsDb: { id: 0, items: {} },
+      listsDb: { id: 0, lists: {} }
     };
 
     myApp = createApp(config, doNothing);
@@ -82,6 +84,42 @@ describe('Test todo', () => {
         .expect(302, done);
     });
 
+    it('should serve home page for GET /login when the user is already logged in', (done) => {
+      let cookie;
+      request(myApp)
+        .post('/login')
+        .send('name=bani&&password=abcd')
+        .end((err, res) => {
+          cookie = res.headers['set-cookie'];
+          request(myApp)
+            .get('/login')
+            .set('Cookie', cookie)
+            .expect('location', '/home')
+            .expect(302, done);
+        });
+    });
   });
 
+  describe('GET /home', () => {
+    it('should not serve home page for GET /home when the user is not already logged in', (done) => {
+      request(myApp)
+        .get('/home')
+        .expect(302, done);
+    });
+
+    it('should serve home page for GET /home when the user is already logged in', (done) => {
+      let cookie;
+      request(myApp)
+        .post('/login')
+        .send('name=bani&&password=abcd')
+        .end((err, res) => {
+          cookie = res.headers['set-cookie'];
+          request(myApp)
+            .get('/home')
+            .set('Cookie', cookie)
+            .expect(/TODO/)
+            .expect(200, done);
+        });
+    });
+  });
 });

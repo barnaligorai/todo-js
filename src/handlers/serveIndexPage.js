@@ -1,6 +1,6 @@
 const { indexPage } = require('./indexPage.js');
 
-const serveIndexPage = (req, res, next) => {
+const serveIndexPage = (req, res) => {
   if (!req.session.isNew) {
     res.redirect(302, '/home');
     return;

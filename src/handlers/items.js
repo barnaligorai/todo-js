@@ -12,9 +12,9 @@ class Items {
   #id;
   #db;
 
-  constructor(items) {
+  constructor({ items, id }) {
     this.#db = items;
-    this.#id = Object.keys(items).length;
+    this.#id = id;
   }
 
   addItem(listId, task) {

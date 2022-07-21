@@ -16,7 +16,6 @@ const auth = (req, res, next) => {
 
 const todoHandler = (lists, items) => {
   const todoRouter = express.Router();
-
   todoRouter.use(auth);
   todoRouter.post('/markItem/:itemId', markItem(items));
   todoRouter.post('/deleteItem/:itemId', deleteItem(items));
