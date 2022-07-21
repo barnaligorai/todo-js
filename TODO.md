@@ -1,14 +1,16 @@
 # TODO
 
+  - [ ] Add username in the home page
   - [ ] Use a coolors palette
   - [ ] Separate login page from registration page
-  - [ ] Test app
   - [ ] Secure all the requests
-  - [ ] Persist items and lists
-
+  - [ ] Add try catch blocks around fs
+  - [ ] Add try catch block around start listening on app
 
 # DONE
 
+  - [x] Persist items and lists
+  - [x] Test app
   - [x] Persist user details
   - [x] Fix sizes of the input boxes
   - [x] Add clickable effect on checkbox and delete button

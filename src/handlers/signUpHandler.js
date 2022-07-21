@@ -17,4 +17,4 @@ const signUpHandler = (users, usersFile, fs) => (req, res, next) => {
   res.redirect(302, '/sign-up?err=606');
 };
 
-module.exports = { signUpHandler };
+module.exports = { signUpHandler, updateFile };

@@ -23,7 +23,8 @@ class Lists {
   }
 
   getLists() {
-    return this.#db;
+    const lists = this.#db;
+    return { id: this.#id, lists };
   }
 
   find(name) {

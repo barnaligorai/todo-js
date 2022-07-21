@@ -20,15 +20,18 @@ const alreadyLoggedIn = (req, res, next) => {
   next();
 };
 
-const readFile = (fileName, fs) => {
-  const users = JSON.parse(fs.readFileSync(fileName, 'utf8'));
-  return { users };
+const readFile = (files, fs) => {
+  const { usersFile, listsFile, itemsFile } = files;
+  const users = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
+  const listsDb = JSON.parse(fs.readFileSync(listsFile, 'utf8'));
+  const itemsDb = JSON.parse(fs.readFileSync(itemsFile, 'utf8'));
+  return { users, listsDb, itemsDb };
 };
 
 const createApp = (config, logger, fs) => {
-  const { staticDir, session, itemsDb, listsDb, usersFile } = config;
+  const { staticDir, session, files } = config;
 
-  const { users } = readFile(usersFile, fs);
+  const { users, listsDb, itemsDb } = readFile(files, fs);
 
   const lists = new Lists(listsDb);
   const items = new Items(itemsDb);
@@ -48,9 +51,9 @@ const createApp = (config, logger, fs) => {
   app.post('/login', alreadyLoggedIn, newLogin(users));
 
   app.get('/sign-up', alreadyLoggedIn, signUpErrorHandler);
-  app.post('/sign-up', alreadyLoggedIn, signUpHandler(users, usersFile, fs));
+  app.post('/sign-up', alreadyLoggedIn, signUpHandler(users, files.usersFile, fs));
 
-  app.use(['/list', '/item'], todoHandler(lists, items));
+  app.use(['/list', '/item'], todoHandler(lists, items, files, fs));
 
   app.get('/home', serveHomePage);
   app.use(express.static(staticDir));

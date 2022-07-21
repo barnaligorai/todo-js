@@ -25,7 +25,8 @@ class Items {
   }
 
   getItems() {
-    return this.#db;
+    const items = this.#db;
+    return { id: this.#id, items };
   }
 
   find(id) {

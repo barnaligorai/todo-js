@@ -2,15 +2,17 @@ const request = require('supertest');
 const { createApp } = require('../src/app.js');
 const assert = require('assert');
 
-const mockedFs = {
-  readFileSync: (fileName) => {
-    assert.strictEqual(fileName, 'test/data/users.json');
-    return '{"bani": {"name": "bani","password": "abcd"}}';
-  },
+const mockedFs = (files, contents) => {
+  let index = -1;
+  return {
+    readFileSync: (fileName) => {
+      index++;
+      assert.strictEqual(fileName, files[index]);
+      return contents[fileName];
+    },
 
-  writeFileSync: (fileName) => {
-    assert.strictEqual(fileName, 'test/data/users.json');
-  },
+    writeFileSync: () => { },
+  };
 };
 
 const doNothing = (req, res, next) => {
@@ -25,12 +27,19 @@ describe('Test todo', () => {
     config = {
       staticDir: 'public',
       session: { name: 'mySession', keys: ['myKey'] },
-      usersFile: 'test/data/users.json',
-      itemsDb: { id: 0, items: {} },
-      listsDb: { id: 0, lists: {} }
+      files: {
+        usersFile: 'users',
+        itemsFile: 'items',
+        listsFile: 'lists',
+      }
     };
-
-    myApp = createApp(config, doNothing, mockedFs);
+    const files = ['users', 'lists', 'items'];
+    const contents = {
+      users: '{"bani": {"name": "bani","password": "abcd"}}',
+      items: '{"id":0,"items":{}}',
+      lists: '{"id":0,"lists":{}}'
+    };
+    myApp = createApp(config, doNothing, mockedFs(files, contents));
   });
 
   describe('GET /wrongUrl', () => {

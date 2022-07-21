@@ -6,31 +6,43 @@ const doNothing = (req, res, next) => {
   next();
 };
 
-const mockedFs = {
-  readFileSync: (fileName) => {
-    return '{"bani": {"name": "bani","password": "abcd"}}';
-  },
+const mockedFs = (files, contents) => {
+  let index = -1;
+  return {
+    readFileSync: (fileName) => {
+      index++;
+      assert.strictEqual(fileName, files[index]);
+      return contents[fileName];
+    },
 
-  writeFileSync: (fileName) => {
-    assert.strictEqual(fileName, 'test/data/users.json');
-  },
+    writeFileSync: () => { },
+  };
 };
 
 describe('Todo Router', () => {
   let config;
   let myApp;
   let cookie;
+  const files = ['users', 'lists', 'items'];
+  const contents = {
+    users: '{"bani": {"name": "bani","password": "abcd"}}',
+    items: '{"id":1,"items":{"i0":{"id":"i0","task":"buy gift","done":"false"}}}',
+    lists: '{"id":1,"lists":{"l0":{"id":"l0","title":"shopping"}}}'
+  };
 
   before((done) => {
     config = {
       staticDir: 'public',
       session: { name: 'mySession', keys: ['myKey'] },
       users: { bani: { name: 'bani', password: 'abcd' } },
-      itemsDb: { id: 0, items: {} },
-      listsDb: { id: 0, lists: {} }
+      files: {
+        usersFile: 'users',
+        itemsFile: 'items',
+        listsFile: 'lists',
+      }
     };
 
-    myApp = createApp(config, doNothing, mockedFs);
+    myApp = createApp(config, doNothing, mockedFs(files, contents));
     request(myApp)
       .post('/login')
       .send('name=bani&&password=abcd')
@@ -44,12 +56,14 @@ describe('Todo Router', () => {
     config = {
       staticDir: 'public',
       session: { name: 'mySession', keys: ['myKey'] },
-      users: { bani: { name: 'bani', password: 'abcd' } },
-      itemsDb: { id: 0, items: {} },
-      listsDb: { id: 0, lists: {} }
+      files: {
+        usersFile: 'users',
+        itemsFile: 'items',
+        listsFile: 'lists',
+      }
     };
 
-    myApp = createApp(config, doNothing, mockedFs);
+    myApp = createApp(config, doNothing, mockedFs(files, contents));
   });
 
   describe('/list', () => {
@@ -82,19 +96,12 @@ describe('Todo Router', () => {
       });
 
       it('should add a list for POST /list/add-list when the user is logged in', (done) => {
-        const listsDb = { id: 0, lists: {} };
-        config.listsDb = listsDb;
-        const myApp = createApp(config, doNothing, mockedFs);
-
         request(myApp)
           .post('/list/add-list')
           .send({ title: 'shopping' })
           .set('Cookie', cookie)
-          .expect(200)
-          .end((err, res) => {
-            assert.deepStrictEqual(listsDb.lists['l0'], JSON.parse(res.text))
-            done();
-          });
+          .expect(/title.*shopping/)
+          .expect(200, done)
       });
     });
 
@@ -108,29 +115,18 @@ describe('Todo Router', () => {
       });
 
       it('should delete the mentioned list for POST /list/deleteList/:listId when the user is logged in', (done) => {
-        const listsDb = {
-          id: 1,
-          lists: { l0: { id: 'l0', createdOn: new Date().getTime() } }
-        };
-
-        const expectedList = { deletedList: listsDb.lists.l0 };
-
-        config.listsDb = listsDb;
-        const myApp = createApp(config, doNothing, mockedFs);
-
         request(myApp)
           .post('/list/deleteList/l0')
           .set('Cookie', cookie)
           .send({ listId: 'l0' })
-          .expect(200)
-          .end((err, res) => {
-            assert.deepStrictEqual(JSON.parse(res.text), expectedList);
-            done();
-          });
+          .expect(/deleted.*l0/)
+          .expect(200, done)
       });
 
     });
+  });
 
+  describe('/item', () => {
     describe('POST /item/add-item', () => {
 
       it('should redirect to login page for POST /item/add-item when user is not logged in', (done) => {
@@ -142,22 +138,12 @@ describe('Todo Router', () => {
       });
 
       it('should add an item for POST /item/add-item when user is logged in', (done) => {
-        const itemsDb = {
-          id: 0, items: {}
-        };
-
-        config.itemsDb = itemsDb;
-        const myApp = createApp(config, doNothing, mockedFs);
-
         request(myApp)
           .post('/item/add-item')
           .set('Cookie', cookie)
           .send({ id: 'i0', task: 'sleep' })
-          .expect(200)
-          .end((err, res) => {
-            assert.deepStrictEqual(JSON.parse(res.text), itemsDb.items.i0);
-            done();
-          });
+          .expect(/sleep/)
+          .expect(200, done)
       });
     });
 
@@ -171,28 +157,30 @@ describe('Todo Router', () => {
       });
 
       it('should mark the item for POST /markItem/:itemId when the user is logged in', (done) => {
-        const itemsDb = {
-          id: 1,
-          items: {
-            i0: {
-              id: 'i0',
-              done: false,
-              task: 'buy milk',
-              createdOn: new Date().getTime()
-            }
-          }
-        };
-        config.itemsDb = itemsDb;
-        const myApp = createApp(config, doNothing, mockedFs);
-
         request(myApp)
           .post('/item/markItem/i0')
           .set('Cookie', cookie)
-          .expect(200)
-          .end((err, res) => {
-            assert.deepStrictEqual(JSON.parse(res.text), { markedAs: 'done' })
-            done();
-          });
+          .expect(/mark.*done/)
+          .expect(200, done);
+      });
+    });
+
+    describe('POST /item/deleteItem', () => {
+
+      it('should redirect to login page for POST /items/deleteItem/:itemId when the user is not logged in', (done) => {
+        request(myApp)
+          .post('/item/deleteItem/i0')
+          .expect('location', '/login')
+          .expect(302, done);
+      });
+
+      it('should delete the mentioned item for POST /items/deleteItem/:itemId when the user is logged in', (done) => {
+        request(myApp)
+          .post('/item/deleteItem/i0')
+          .set('Cookie', cookie)
+          .send({ listId: 'i0' })
+          .expect(/deleted.*i0/)
+          .expect(200, done);
       });
     });
   });
