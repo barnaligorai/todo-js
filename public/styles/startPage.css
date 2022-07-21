@@ -5,8 +5,9 @@
 }
 
 body {
-  background-color: rgb(245, 239, 232);
+  background-color: #16425B;
   font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .body{
@@ -16,21 +17,24 @@ body {
 
 header > h1 {
   text-align: center;
-  color: #4f000b;
+  color: white;
+  text-shadow: 1px 2px 2px white;
   font-size: 3em;
 }
 
 h2 {
-  color: #720026;
+  color: #caf0f8;
   font-size: 2em;
 }
 
 h3 {
-  color: #ce4257;
+  margin-top: 0.5em;
+  color: white;
   font-size: 1.5em;
 }
 
 .about{
+  font-size: 1.2em;
   margin-top: 1em;
   text-align: center;
 }
@@ -38,14 +42,14 @@ h3 {
 .get-Started {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: 2em;
 }
 
 .auth {
   background-color: white;
-  height: 15em;
-  width: 30%;
+  height: 20em;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,10 +58,9 @@ h3 {
 }
 
 .button {
-  background-color: #06a0d4;
+  background-color: #3A7CA5;
   color: white;
   width: 100%;
-  height: 2em;
 }
 
 form {
@@ -74,11 +77,16 @@ form > *{
 }
 
 input {
-  height: 2em;
+  height: 2.5em;
+  font-size: 0.8em;
 }
 
 .message-area {
   height: 1em;
   width: 90%;
   font-size: 0.8em;
+}
+
+.auth-heading {
+  font-size: 1.2em;
 }

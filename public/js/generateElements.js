@@ -61,7 +61,7 @@ const createTasks = (tasks) => {
 const createList = (id, title, tasks) => {
   const listTemplate = [
     `div.list#${id}`,
-    ['div.list-header',
+    ['h3.list-header',
       ['div.title', title],
       ['div.delete',
         ['img.delete-icon', 'deleteIcon']]],
@@ -71,7 +71,7 @@ const createList = (id, title, tasks) => {
 
   const deleteElement = listElement.getElementsByClassName('delete-icon')[0];
   const deleteIcon = document.createElement('img');
-  deleteIcon.src = 'images/delete.png';
+  deleteIcon.src = 'images/remove.png';
   deleteElement.replaceWith(deleteIcon);
   deleteIcon.onclick = (event) => deleteList(event, listElement);
 
