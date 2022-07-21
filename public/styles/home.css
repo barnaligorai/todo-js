@@ -91,3 +91,11 @@ width: 200px;
 .items .task {
   width: 60%;
 }
+
+.delete:hover{
+    transform: scale(1.2);
+}
+
+.checkbox:hover{
+    transform: scale(1.2);
+}

@@ -1,13 +1,18 @@
 # TODO
 
-  - [ ] Secure all the requests
-  - [ ] Test app
+  - [ ] Separate login page from registration page
+  - [ ] Fix sizes of the input boxes
+  - [ ] Use a coolors palette
   - [ ] Persist user details
+  - [ ] Test app
+  - [ ] Secure all the requests
   - [ ] Persist items and lists
 
 
 # DONE
 
+  - [x] Add clickable effect on checkbox and delete button
+  - [x] Hide password
   - [x] Create router for todo actions
   - [x] Delete an item
   - [x] Delete a list
