@@ -20,8 +20,15 @@ const alreadyLoggedIn = (req, res, next) => {
   next();
 };
 
-const createApp = (config, logger) => {
-  const { staticDir, session, users, itemsDb, listsDb } = config;
+const readFile = (fileName, fs) => {
+  const users = JSON.parse(fs.readFileSync(fileName, 'utf8'));
+  return { users };
+};
+
+const createApp = (config, logger, fs) => {
+  const { staticDir, session, itemsDb, listsDb, usersFile } = config;
+
+  const { users } = readFile(usersFile, fs);
 
   const lists = new Lists(listsDb);
   const items = new Items(itemsDb);
@@ -41,7 +48,7 @@ const createApp = (config, logger) => {
   app.post('/login', alreadyLoggedIn, newLogin(users));
 
   app.get('/sign-up', alreadyLoggedIn, signUpErrorHandler);
-  app.post('/sign-up', alreadyLoggedIn, signUpHandler(users));
+  app.post('/sign-up', alreadyLoggedIn, signUpHandler(users, usersFile, fs));
 
   app.use(['/list', '/item'], todoHandler(lists, items));
 

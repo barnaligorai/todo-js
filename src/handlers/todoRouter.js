@@ -17,13 +17,14 @@ const auth = (req, res, next) => {
 const todoHandler = (lists, items) => {
   const todoRouter = express.Router();
   todoRouter.use(auth);
+
+  todoRouter.post('/add-item', addNewItem(items));
   todoRouter.post('/markItem/:itemId', markItem(items));
   todoRouter.post('/deleteItem/:itemId', deleteItem(items));
-  todoRouter.post('/deleteList/:listId', deleteList(lists));
-  todoRouter.post('/add-item', addNewItem(items));
-  todoRouter.post('/add-list', addNewList(lists));
 
   todoRouter.get('/all-lists', serveLists(lists, items));
+  todoRouter.post('/add-list', addNewList(lists));
+  todoRouter.post('/deleteList/:listId', deleteList(lists));
 
   return todoRouter;
 };

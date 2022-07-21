@@ -2,7 +2,6 @@
 
   - [ ] Use a coolors palette
   - [ ] Separate login page from registration page
-  - [ ] Persist user details
   - [ ] Test app
   - [ ] Secure all the requests
   - [ ] Persist items and lists
@@ -10,6 +9,7 @@
 
 # DONE
 
+  - [x] Persist user details
   - [x] Fix sizes of the input boxes
   - [x] Add clickable effect on checkbox and delete button
   - [x] Hide password

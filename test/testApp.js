@@ -1,5 +1,17 @@
 const request = require('supertest');
 const { createApp } = require('../src/app.js');
+const assert = require('assert');
+
+const mockedFs = {
+  readFileSync: (fileName) => {
+    assert.strictEqual(fileName, 'test/data/users.json');
+    return '{"bani": {"name": "bani","password": "abcd"}}';
+  },
+
+  writeFileSync: (fileName) => {
+    assert.strictEqual(fileName, 'test/data/users.json');
+  },
+};
 
 const doNothing = (req, res, next) => {
   next();
@@ -13,12 +25,12 @@ describe('Test todo', () => {
     config = {
       staticDir: 'public',
       session: { name: 'mySession', keys: ['myKey'] },
-      users: { bani: { name: 'bani', password: 'abcd' } },
+      usersFile: 'test/data/users.json',
       itemsDb: { id: 0, items: {} },
       listsDb: { id: 0, lists: {} }
     };
 
-    myApp = createApp(config, doNothing);
+    myApp = createApp(config, doNothing, mockedFs);
   });
 
   describe('GET /wrongUrl', () => {

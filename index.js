@@ -5,8 +5,6 @@ const { createApp } = require('./src/app');
 require('dotenv').config();
 
 const main = (PORT) => {
-  const users = { bani: { name: 'bani', password: 'abcd' } };
-
   const { COOKIE_NAME, COOKIE_KEY, STATIC_DIR } = process.env;
 
   const itemsDb = { id: 0, items: {} };
@@ -18,16 +16,17 @@ const main = (PORT) => {
       name: COOKIE_NAME,
       keys: [COOKIE_KEY]
     },
+    usersFile: 'data/users.json',
     itemsDb,
-    listsDb,
-    users
+    listsDb
   };
 
   const logger = morgan('tiny');
 
-  const app = createApp(config, logger);
+  const app = createApp(config, logger, fs);
+
   app.listen(PORT, () =>
-    console.log(`App listening on ${8080}`));
+    console.log(`App listening on ${PORT}`));
 };
 
-main(8080);
+main(4444);
