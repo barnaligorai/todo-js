@@ -1,10 +1,14 @@
 # TODO
 
+  - [ ] Secure all the requests
+  - [ ] Test app
   - [ ] Persist user details
   - [ ] Persist items and lists
 
+
 # DONE
 
+  - [x] Create router for todo actions
   - [x] Delete an item
   - [x] Delete a list
   - [x] Mark an item

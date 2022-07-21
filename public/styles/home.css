@@ -3,11 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  background-color: rgba(176, 224, 230, 0.200);
+}
 
 .body{
-  background-color: rgba(176, 224, 230, 0.592);
   width: 90%;
   margin: auto;
+  background-color: rgba(176, 224, 230, 0.300);
 }
 
 .body > header > h1 {

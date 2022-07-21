@@ -17,6 +17,7 @@ const main = (PORT) => {
   };
 
   const logger = morgan('tiny');
+
   const app = createApp(config, logger);
   app.listen(PORT, () =>
     console.log(`App listening on ${8080}`));

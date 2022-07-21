@@ -10,7 +10,7 @@ const afterDelete = element => (status, res) => {
 
 const deleteTask = (event, taskElement) => {
   const req = {
-    url: '/item/delete/' + taskElement.id,
+    url: '/item/deleteItem/' + taskElement.id,
     method: 'POST'
   };
   sendRequest(req, afterDelete(taskElement));
@@ -18,7 +18,7 @@ const deleteTask = (event, taskElement) => {
 
 const deleteList = (event, listElement) => {
   const req = {
-    url: '/list/delete/' + listElement.id,
+    url: '/list/deleteList/' + listElement.id,
     method: 'POST'
   };
   sendRequest(req, afterDelete(listElement));
@@ -26,7 +26,7 @@ const deleteList = (event, listElement) => {
 
 const markItem = (event, taskElement) => {
   const req = {
-    url: '/item/mark/' + taskElement.id,
+    url: '/item/markItem/' + taskElement.id,
     method: 'post',
   };
 
@@ -55,7 +55,7 @@ const addNewItemReq = (event, id, tasksElement) => {
   const task = formData.get('task');
   const body = { id, task };
   const req = {
-    url: '/add-item',
+    url: '/item/add-item',
     method: 'POST',
     headers: [{ header: 'content-type', value: 'application/json' }],
     body: JSON.stringify(body)

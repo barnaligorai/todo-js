@@ -28,7 +28,7 @@ const newListReq = (event) => {
   const body = { title };
 
   const req = {
-    url: '/add-list',
+    url: '/list/add-list',
     method: 'POST',
     headers: [{ header: 'content-type', value: 'application/json' }],
     body: JSON.stringify(body)
@@ -59,7 +59,7 @@ const generateHomePage = (status, res) => {
 
 const generateAllLists = () => {
   const req = {
-    url: '/home/all-lists',
+    url: '/list/all-lists',
     method: 'GET'
   };
   sendRequest(req, generateHomePage);

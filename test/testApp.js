@@ -63,7 +63,7 @@ describe('Test todo', () => {
         .post('/login')
         .send('name=bani&&password=abcd')
         .expect('location', /home/)
-        .expect(302, done)
+        .expect(302, done);
     });
 
     it('should give user doesn\'t exist error for POST /login when the username is wrong', (done) => {
