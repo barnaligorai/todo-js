@@ -1,4 +1,4 @@
-const logout = (req, res, next) => {
+const logout = (req, res) => {
   req.session = null;
   res.redirect(302, '/');
 };

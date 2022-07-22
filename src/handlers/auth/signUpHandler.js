@@ -1,6 +1,6 @@
 const { updateFile } = require('../../utils/updateFile.js');
 
-const signUpHandler = (users, usersFile, fs) => (req, res, next) => {
+const signUpHandler = (users, usersFile, fs) => (req, res) => {
   const { name, password } = req.body;
 
   if (users[name]) {

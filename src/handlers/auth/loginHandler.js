@@ -1,4 +1,4 @@
-const newLogin = (users) => (req, res, next) => {
+const newLogin = (users) => (req, res) => {
   const { name, password } = req.body;
   if (!users[name]) {
     res.redirect(302, '/login?status=601');

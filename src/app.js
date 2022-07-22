@@ -11,9 +11,11 @@ const { authRouter } = require('./routes/auth.js');
 
 const readFile = (files, fs) => {
   const { usersFile, listsFile, itemsFile } = files;
+
   const users = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
   const listsDb = JSON.parse(fs.readFileSync(listsFile, 'utf8'));
   const itemsDb = JSON.parse(fs.readFileSync(itemsFile, 'utf8'));
+
   return { users, listsDb, itemsDb };
 };
 

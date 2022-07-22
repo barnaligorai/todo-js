@@ -2,10 +2,10 @@
 
   - ## new
 
+    - [ ] Add username in the home page
     - [ ] Confirm before deleting
     - [ ] Default title for a new list
     - [ ] Separate login page from registration page
-    - [ ] Add username in the home page
 
 
   - ## styles
@@ -25,21 +25,19 @@
 
   - ## others
 
-    - [ ] Add try catch blocks around fs
     - [ ] Add try catch block around start listening on app
-    - [ ] Consider array over object for storing lists and items for order
     - [ ] Change test descriptions
-    - [ ] Change the not(!) logics
     - [ ] Make util file
-    - [ ] Secure all the requests
-    - [ ] Remove unnecessary next functions
+    - [ ] Add try catch blocks around fs
+    - [ ] Consider array over object for storing lists and items for order
     - [ ] Consider changing name of list createdBy to user
-    - [ ] Consider changing err to status for login and signup messages
   
-
 
 # DONE
 
+  - [x] Change the not(!) logics
+  - [x] Remove unnecessary next functions
+  - [x] ~~Consider changing err to status for login and signup messages~~ changed
   - [x] Give user feedback for npm setup
   - [x] Restructure the files and directories
   - [x] Persist items and lists

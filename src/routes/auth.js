@@ -4,11 +4,11 @@ const { logout } = require('../handlers/auth/logout.js');
 const { signUpHandler } = require('../handlers/auth/signUpHandler.js');
 
 const alreadyLoggedIn = (req, res, next) => {
-  if (!req.session.isNew) {
-    res.redirect(302, '/home');
+  if (req.session.isNew) {
+    next();
     return;
   }
-  next();
+  res.redirect(302, '/home');
 };
 
 const authRouter = (users, usersFile, fs) => {
