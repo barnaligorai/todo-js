@@ -1,9 +1,9 @@
-const { updateFile } = require('./signUpHandler.js');
+const { updateFile } = require('../../utils/updateFile.js');
 
 const deleteList = (lists, listsFile, fs) => (req, res) => {
   const deletedList = lists.remove(req.params.listId);
 
-  updateFile(lists.getLists(), listsFile, fs);
+  updateFile(listsFile, lists.getLists(), fs);
 
   res.json({ deletedList });
 

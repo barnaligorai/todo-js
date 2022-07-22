@@ -1,10 +1,10 @@
-const { updateFile } = require("./signUpHandler");
+const { updateFile } = require('../../utils/updateFile.js');
 
 const addNewItem = (items, itemsFile, fs) => (req, res, next) => {
   const { id, task } = req.body;
   const item = items.addItem(id, task);
 
-  updateFile(items.getItems(), itemsFile, fs);
+  updateFile(itemsFile, items.getItems(), fs);
 
   res.json(item);
 };

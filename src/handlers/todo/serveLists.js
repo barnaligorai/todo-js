@@ -1,4 +1,4 @@
-const serveLists = (lists, items) => (req, res, next) => {
+const serveLists = (lists, items) => (req, res) => {
   const { name } = req.session;
   const allLists = lists.find(name);
   const allItems = [];

@@ -1,13 +1,13 @@
-const { indexPage } = require('./indexPage.js');
+const { indexPage } = require('../views/indexPage.js');
 
 const serveIndexPage = (req, res) => {
-  if (!req.session.isNew) {
-    res.redirect(302, '/home');
+  if (req.session.isNew) {
+    res.type('html');
+    res.end(indexPage({}));
     return;
   }
 
-  res.type('html');
-  res.end(indexPage());
+  res.redirect(302, '/home');
 };
 
 module.exports = { serveIndexPage };

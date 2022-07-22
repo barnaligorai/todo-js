@@ -6,14 +6,14 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha",
-    "setup": "bash .setup.sh"
+    "setup": "bash .bin/.setup.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/step-8/todo-barnaligorai.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "barnaligorai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/step-8/todo-barnaligorai/issues"

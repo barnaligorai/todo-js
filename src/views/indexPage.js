@@ -1,4 +1,4 @@
-const indexPage = (signUpMessage = '', loginMessage = '') => {
+const indexPage = ({ signUpMessage, loginMessage }) => {
   const template = `<html>
   <head>
     <title>TODO</title>
@@ -21,7 +21,7 @@ const indexPage = (signUpMessage = '', loginMessage = '') => {
             <div class="auth-heading">
               New user?
             </div>
-            <div id="signUp-message" class="message-area">${signUpMessage}</div>
+            <div id="signUp-message" class="message-area">${signUpMessage ? signUpMessage : ''}</div>
             <form id="signUp-form" action="/sign-up" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
               
@@ -37,7 +37,7 @@ const indexPage = (signUpMessage = '', loginMessage = '') => {
             <div class="auth-heading">
               Already have an account?
             </div>
-            <div id="login-message" class="message-area">${loginMessage}</div>
+            <div id="login-message" class="message-area">${loginMessage ? loginMessage : ''}</div>
             <form id="login-form" action="/login" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
               

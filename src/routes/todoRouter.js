@@ -1,10 +1,10 @@
 const express = require('express');
-const { addNewItem } = require('./addNewItem');
-const { addNewList } = require('./addNewList');
-const { deleteItem } = require('./deleteItem');
-const { deleteList } = require('./deleteList');
-const { markItem } = require('./markItem');
-const { serveLists } = require('./serveLists');
+const { addNewItem } = require('../handlers/todo/addNewItem');
+const { addNewList } = require('../handlers/todo/addNewList');
+const { deleteItem } = require('../handlers/todo/deleteItem');
+const { deleteList } = require('../handlers/todo/deleteList');
+const { markItem } = require('../handlers/todo/markItem');
+const { serveLists } = require('../handlers/todo/serveLists');
 
 const auth = (req, res, next) => {
   if (req.session.isNew) {
@@ -28,6 +28,5 @@ const todoHandler = (lists, items, { itemsFile, listsFile }, fs) => {
 
   return todoRouter;
 };
-
 
 module.exports = { todoHandler };

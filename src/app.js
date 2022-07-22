@@ -1,24 +1,13 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
 
-const { newLogin } = require('./handlers/loginHandler.js');
+const { Lists } = require('./models/lists.js');
+const { Items } = require('./models/items.js');
 const { serveIndexPage } = require('./handlers/serveIndexPage.js');
-const { signUpHandler } = require('./handlers/signUpHandler.js');
 const { serveHomePage } = require('./handlers/serveHomePage.js');
-const { notFoundHandler } = require('./handlers/notFoundHandler.js');
-const { loginErrorHandler, signUpErrorHandler } = require('./handlers/authErrorHandler.js');
-const { Lists } = require('./handlers/lists.js');
-const { Items } = require('./handlers/items.js');
-const { logout } = require('./handlers/logout.js');
-const { todoHandler } = require('./handlers/todoRouter.js');
-
-const alreadyLoggedIn = (req, res, next) => {
-  if (!req.session.isNew) {
-    res.redirect(302, '/home');
-    return;
-  }
-  next();
-};
+const { notFoundHandler } = require('./middlewares/notFoundHandler.js');
+const { todoHandler } = require('./routes/todoRouter.js');
+const { authRouter } = require('./routes/auth.js');
 
 const readFile = (files, fs) => {
   const { usersFile, listsFile, itemsFile } = files;
@@ -45,13 +34,7 @@ const createApp = (config, logger, fs) => {
 
   app.get('/', serveIndexPage);
 
-  app.get('/logout', logout);
-
-  app.get('/login', alreadyLoggedIn, loginErrorHandler);
-  app.post('/login', alreadyLoggedIn, newLogin(users));
-
-  app.get('/sign-up', alreadyLoggedIn, signUpErrorHandler);
-  app.post('/sign-up', alreadyLoggedIn, signUpHandler(users, files.usersFile, fs));
+  app.use(authRouter(users, files.usersFile, fs));
 
   app.use(['/list', '/item'], todoHandler(lists, items, files, fs));
 

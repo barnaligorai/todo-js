@@ -1,10 +1,10 @@
-const { updateFile } = require('./signUpHandler.js');
+const { updateFile } = require('../../utils/updateFile.js');
 
 const markItem = (items, itemsFile, fs) => (req, res) => {
   const { itemId } = req.params;
   const markedAs = items.mark(itemId);
 
-  updateFile(items.getItems(), itemsFile, fs);
+  updateFile(itemsFile, items.getItems(), fs);
 
   res.json({ markedAs });
 };

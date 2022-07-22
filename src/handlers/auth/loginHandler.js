@@ -1,12 +1,12 @@
 const newLogin = (users) => (req, res, next) => {
   const { name, password } = req.body;
   if (!users[name]) {
-    res.redirect(302, '/login?err=601');
+    res.redirect(302, '/login?status=601');
     return;
   }
 
   if (users[name].password !== password) {
-    res.redirect(302, '/login?err=602');
+    res.redirect(302, '/login?status=602');
     return;
   }
 
