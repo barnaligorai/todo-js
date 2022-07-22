@@ -3,7 +3,6 @@
   - ## new
 
     - [ ] Confirm before deleting
-    - [ ] Default title for a new list
     - [ ] Separate login page from registration page
 
 
@@ -23,6 +22,7 @@
 # DONE
 
 
+  - [x] ~~Default title for a new list~~ Made title a required field
   - [x] Add colors of red and green for login/sign-up messages
   - [x] Prevent default for add-list
   - [x] ~~Remove background blue color of home~~ changed color theme

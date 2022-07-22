@@ -19,7 +19,7 @@ const home = (username) => `<html>
     </header>
     <main>
       <form id="add-list">
-        <input type="text" name="title" placeholder="Add a new list">
+        <input type="text" name="title" placeholder="Add a new list" required>
       </form>
       <div class="lists">
       </div>

@@ -30,7 +30,7 @@ const indexPage = ({ signUpMessage, loginMessage }) => {
             <div id="login-message" class="message-area ${color}">${loginMessage ? loginMessage : ''}</div>
             <form id="login-form" action="/login" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
-              <input type="password" name="password" id="password" placeholder="Password" required>
+              <input type="password" name="password" placeholder="Password" required>
               <section>
                 <input type="submit" class="button" id="login-button" value="Login"/>
               </section>
@@ -44,7 +44,7 @@ const indexPage = ({ signUpMessage, loginMessage }) => {
             <div id="signUp-message" class="message-area ${color}">${signUpMessage ? signUpMessage : ''}</div>
             <form id="signUp-form" action="/sign-up" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
-              <input type="password" name="password" id="password" placeholder="Password" required>
+              <input type="password" name="password" placeholder="Password" required>
               <section>
                 <Input type="submit" id="register" class="button" value="Sign Up"/>
               </section>

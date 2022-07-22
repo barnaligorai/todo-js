@@ -38,13 +38,10 @@ const newListReq = () => {
 };
 
 const addNewList = () => {
-  const addList = document.querySelector('#add-list>input');
-  addList.onkeydown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      newListReq();
-      addList.value = '';
-    }
+  const form = document.querySelector('#add-list');
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    newListReq();
   };
 };
 
