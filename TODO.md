@@ -9,7 +9,6 @@
 
   - ## styles
 
-    - [ ] Add colors of red and green for login/sign-up messages
 
 
   - ## others
@@ -24,6 +23,7 @@
 # DONE
 
 
+  - [x] Add colors of red and green for login/sign-up messages
   - [x] Prevent default for add-list
   - [x] ~~Remove background blue color of home~~ changed color theme
   - [x] ~~Use same trushcan icon~~ used icons
