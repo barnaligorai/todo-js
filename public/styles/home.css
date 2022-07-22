@@ -1,3 +1,7 @@
+:root {
+  --bgColor: rgba(211, 211, 211, 0.347)
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,21 +10,35 @@
 
 body {
   font-size: 20px;
-  background-color: rgba(127, 194, 215, 0.671);
+  background-color: var(--bgColor);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.body {
-  width: 95%;
-  margin: auto;
-  background-color: rgba(127, 194, 215, 0.196);
-  padding: 1em;
+.body > header{
+  padding: 0.5em;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout{
+  border-left: 0.5px solid gray;
+  font-size: 0.9em;
+  font-weight: 100;
+  padding: 0 0.5em;
+  color: red;
+  text-decoration: none;
+}
+
+.logout:hover{
+  color: dimgray;
 }
 
 .body > header > h1 {
  text-align: center;
  color: #16425B;
- text-shadow: 1px 1.5px 1px white;
+ text-shadow: 1px 1.5px 1px gray;
  font-size: 3em;
 }
 
@@ -30,54 +48,54 @@ main {
   align-items: center;
 }
 
+.username {
+  padding: 0 0.5em;
+}
+
 .user{
   display: flex;
-  align-items: baseline;
+  align-items: center;
   column-gap: 0.2em;
   justify-content: space-between;
   font-size: 1.5em;
-  color: hsl(206, 51%, 30%);
-}
-
-.logout {
-  font-size: 0.8em;
-  color: hsl(206, 51%, 35%);
+  color: rgba(100,100,100);
 }
 
 .lists {
+  margin: 1em;
   width: 100%;
   display: flex;
-  column-gap: 2em;
   flex-wrap: wrap;
+  column-gap: 2em;
   row-gap: 2em;
   justify-content: center;
-  background-color: white;
 }
 
 .list {
-  padding: 0.5em;
   width: 500px;
   height: 600px;
-  background-color: hsl(90, 8%, 95%);
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 1em;
   border: 1px solid lightgray;
-  margin: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 1px 1px 1px lightgray;
 }
 
 #add-list {
+  margin-top: 10px;
   height: 3em;
   display: flex;
-  width: 50%;
   justify-content: center;
-  column-gap: 0.2em;
   align-items: center;
+  column-gap: 0.4em;
 }
 
 #add-list > * {
-  padding: 0.2em;
+  padding: 0.4em;
   border-radius: 5px;
 }
 
@@ -85,21 +103,34 @@ main {
   width: 400px;
   font-size: 1em;
   border: 1px solid lightgray;
-  height: 2em;
+  height: 2.5em;
+}
+
+input{
+  outline: 0;
+}
+
+input[type=checkbox]{
+  accent-color: rgb(28, 159, 28);
+  width: 1.5em;
+  aspect-ratio: 1;
+  cursor: pointer;
+
 }
 
 #add-list-button {
   height: 2em;
-}
-
-#add-list-button:hover {
-  transform: scale(1.2);
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.687);
+  border: none;
+  background-color: hsl(0, 0%, 80%);
 }
 
 .list-header {
+  color: white;
   height: 1.8em;
   width: 100%;
-  background-color: skyblue;
+  background-color: hsl(0, 0%, 45%);
   display: flex;
   justify-content: end;
   align-items: center;
@@ -110,7 +141,10 @@ main {
 .list-header :first-child {
   width: 80%;
   text-align: center;
-  color: hsl(206, 51%, 20%);
+}
+
+.delete {
+  cursor: pointer;
 }
 
 .list-header > .delete {
@@ -120,19 +154,18 @@ main {
   align-items: center;
 }
 
-.list-header > .delete > img {
-  width: 100%;
-}
-
 .add-item {
   width: 100%;
   text-align: center;
 }
 
 .add-item > input {
+  padding: 0.5em;
   width: 80%;
-  height: 2em;
-  font-size: 0.8em;
+  font-size: 1em;
+  font-weight: 100;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
 .items {
@@ -141,19 +174,15 @@ main {
 
 .items > li {
   margin-top: 0.2em;
+  padding: 0.5em;
+  border: 1px solid lightgray;
+  border-radius: 5px;
   list-style: none;
   display: flex;
   column-gap: 1em;
-  border: 1px solid lightgray;
-  padding: 0.5em;
-  border-radius: 5px;
   align-items: center;
-  color: #2F6690;
+  color: darkslategrey;
   background-color: white;
-}
-
-.items > li > .delete > img {
-  width: 23px;
 }
 
 .items .task {
@@ -162,8 +191,4 @@ main {
 
 .delete:hover {
  transform: scale(1.2);
-}
-
-.checkbox:hover {
-  transform: scale(1.2);
 }

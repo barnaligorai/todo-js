@@ -9,7 +9,7 @@ const { notFoundHandler } = require('./middlewares/notFoundHandler.js');
 const { todoHandler } = require('./routes/todoRouter.js');
 const { authRouter } = require('./routes/auth.js');
 
-const readFile = (files, fs) => {
+const readFiles = (files, fs) => {
   const { usersFile, listsFile, itemsFile } = files;
 
   const users = JSON.parse(fs.readFileSync(usersFile, 'utf8'));
@@ -22,7 +22,7 @@ const readFile = (files, fs) => {
 const createApp = (config, logger, fs) => {
   const { staticDir, session, files } = config;
 
-  const { users, listsDb, itemsDb } = readFile(files, fs);
+  const { users, listsDb, itemsDb } = readFiles(files, fs);
 
   const lists = new Lists(listsDb);
   const items = new Items(itemsDb);

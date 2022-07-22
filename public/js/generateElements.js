@@ -3,7 +3,7 @@ const createElementTree = (elements) => {
   const [tagName, className, id] = tag.split(/[.#]/);
   const parent = document.createElement(tagName);
 
-  if (className) parent.className = className;
+  if (className) parent.className = className.split(',').join(' ');
   if (id) parent.id = id;
 
   if (children && !Array.isArray(children[0])) {
@@ -22,25 +22,21 @@ const createSingleTask = (item) => {
   const taskTemplate = [
     `li.item#${id}`,
     ['div.task', task],
-    ['div.delete',
-      ['img.delete-icon', 'deleteIcon']],
+    ['div.delete,fa-solid,fa-trash', ''],
   ];
 
   const taskElement = createElementTree(taskTemplate);
   const checkboxElement = document.createElement('input');
   checkboxElement.type = 'checkbox';
   checkboxElement.classList = 'checkbox'
-  checkboxElement.onclick = (event) => markItem(event, taskElement);
+  checkboxElement.onclick = () => markItem(taskElement);
 
   if (done) {
     checkboxElement.checked = true;
   }
 
-  const deleteElement = taskElement.getElementsByClassName('delete-icon')[0];
-  const deleteIcon = document.createElement('img');
-  deleteIcon.src = 'images/delete.png';
-  deleteElement.replaceWith(deleteIcon);
-  deleteIcon.onclick = (event) => deleteTask(event, taskElement);
+  const deleteElement = taskElement.querySelector('.delete');
+  deleteElement.onclick = () => deleteTask(taskElement);
 
   taskElement.prepend(checkboxElement);
   return taskElement;
@@ -63,17 +59,14 @@ const createList = (id, title, tasks) => {
     `div.list#${id}`,
     ['h3.list-header',
       ['div.title', title],
-      ['div.delete',
-        ['img.delete-icon', 'deleteIcon']]],
+      ['div.delete,fa-solid,fa-trash', '']
+    ],
   ];
   const listElement = createElementTree(listTemplate);
   const tasksElement = createTasks(tasks);
 
-  const deleteElement = listElement.getElementsByClassName('delete-icon')[0];
-  const deleteIcon = document.createElement('img');
-  deleteIcon.src = 'images/remove.png';
-  deleteElement.replaceWith(deleteIcon);
-  deleteIcon.onclick = (event) => deleteList(event, listElement);
+  const deleteElement = listElement.querySelector('.delete');
+  deleteElement.onclick = () => deleteList(listElement);
 
   const addItemForm = document.createElement('form');
   addItemForm.className = 'add-item';

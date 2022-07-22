@@ -17,22 +17,6 @@ const indexPage = ({ signUpMessage, loginMessage }) => {
           <h3>Stay Creative</h3>
         </div>
         <div class="get-started">
-          <div class="auth" id="sign-up">
-            <div class="auth-heading">
-              New user?
-            </div>
-            <div id="signUp-message" class="message-area">${signUpMessage ? signUpMessage : ''}</div>
-            <form id="signUp-form" action="/sign-up" method="POST">
-              <input type="text" name="name" id="name" placeholder="Enter your username" required>
-              
-              <input type="password" name="password" id="password" placeholder="Password" required>
-
-              <section>
-                <Input type="submit" id="register" class="button" value="Sign Up"/>
-              </section>
-            </form>
-          </div>
-         
           <div class="auth" id="login">
             <div class="auth-heading">
               Already have an account?
@@ -40,11 +24,23 @@ const indexPage = ({ signUpMessage, loginMessage }) => {
             <div id="login-message" class="message-area">${loginMessage ? loginMessage : ''}</div>
             <form id="login-form" action="/login" method="POST">
               <input type="text" name="name" id="name" placeholder="Enter your username" required>
-              
               <input type="password" name="password" id="password" placeholder="Password" required>
-    
               <section>
                 <input type="submit" class="button" id="login-button" value="Login"/>
+              </section>
+            </form>
+          </div>
+
+          <div class="auth" id="sign-up">
+            <div class="auth-heading">
+              New user?
+            </div>
+            <div id="signUp-message" class="message-area">${signUpMessage ? signUpMessage : ''}</div>
+            <form id="signUp-form" action="/sign-up" method="POST">
+              <input type="text" name="name" id="name" placeholder="Enter your username" required>
+              <input type="password" name="password" id="password" placeholder="Password" required>
+              <section>
+                <Input type="submit" id="register" class="button" value="Sign Up"/>
               </section>
             </form>
           </div>

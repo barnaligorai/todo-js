@@ -5,31 +5,31 @@
 }
 
 body {
-  background-color: #16425B;
+  background-color: #e9ecef;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.body{
-  width: 960px;
-  margin: auto;
+header{
+  background-color: white;
+  padding: 0.5em;
 }
 
 header > h1 {
   text-align: center;
-  color: white;
-  text-shadow: 1px 2px 2px white;
+  color: #343a40;
+  text-shadow: 2px 2px 2px gray;
   font-size: 3em;
 }
 
 h2 {
-  color: #caf0f8;
+  color: #495057;
   font-size: 2em;
 }
 
 h3 {
   margin-top: 0.5em;
-  color: white;
+  color: 6c757d;
   font-size: 1.5em;
 }
 
@@ -42,14 +42,15 @@ h3 {
 .get-Started {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-top: 2em;
 }
 
 .auth {
+  border-radius: 5px;
   background-color: white;
   height: 20em;
-  width: 40%;
+  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,6 +62,7 @@ h3 {
   background-color: #3A7CA5;
   color: white;
   width: 100%;
+  border: none;
 }
 
 form {
@@ -72,19 +74,24 @@ form {
   row-gap: 1em;
 }
 
-form > *{
+form > * {
   width: 90%; 
 }
 
 input {
   height: 2.5em;
   font-size: 0.8em;
+  padding: 0.2em;
+  border-radius: 5px;
+  border: 1px solid gray;
 }
 
 .message-area {
   height: 1em;
   width: 90%;
-  font-size: 0.8em;
+  font-size: 0.9em;
+  padding: 0.2em;
+  color: red;
 }
 
 .auth-heading {

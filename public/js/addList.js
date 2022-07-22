@@ -17,12 +17,12 @@ const displayNewAddedList = (status, res) => {
   }
   const { id, title } = JSON.parse(res);
   const newList = createList(id, title, []);
-  const lists = document.getElementsByClassName('lists')[0];
+  const lists = document.querySelector('.lists');
   lists.prepend(newList);
 };
 
-const newListReq = (event) => {
-  const formElement = document.getElementById('add-list');
+const newListReq = () => {
+  const formElement = document.querySelector('#add-list');
   const formData = new FormData(formElement);
   const title = formData.get('title');
   const body = { title };
@@ -38,8 +38,14 @@ const newListReq = (event) => {
 };
 
 const addNewList = () => {
-  const button = document.getElementById('add-list-button');
-  button.onclick = newListReq;
+  const addList = document.querySelector('#add-list>input');
+  addList.onkeydown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      newListReq();
+      addList.value = '';
+    }
+  };
 };
 
 const generateHomePage = (status, res) => {
@@ -48,7 +54,7 @@ const generateHomePage = (status, res) => {
     return;
   }
 
-  const listsElement = document.getElementsByClassName('lists')[0];
+  const listsElement = document.querySelector('.lists');
   const lists = JSON.parse(res).reverse();
 
   lists.forEach(({ id, title, tasks }) => {
@@ -62,6 +68,7 @@ const generateAllLists = () => {
     url: '/list/all-lists',
     method: 'GET'
   };
+
   sendRequest(req, generateHomePage);
 };
 

@@ -1,11 +1,12 @@
-const serveHomePage = (req, res, next) => {
+const { home } = require('../views/homePage.js');
+
+const serveHomePage = (req, res) => {
   if (req.session.isNew) {
     res.redirect(302, '/');
     return;
   }
 
-  req.url = '/home.html';
-  next();
+  res.end(home(req.session.name));
 };
 
 module.exports = { serveHomePage };

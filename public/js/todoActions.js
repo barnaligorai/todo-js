@@ -8,23 +8,25 @@ const afterDelete = element => (status, res) => {
   console.log('Something went wrong');
 };
 
-const deleteTask = (event, taskElement) => {
+const deleteTask = (taskElement) => {
   const req = {
     url: '/item/deleteItem/' + taskElement.id,
     method: 'POST'
   };
+
   sendRequest(req, afterDelete(taskElement));
 };
 
-const deleteList = (event, listElement) => {
+const deleteList = (listElement) => {
   const req = {
     url: '/list/deleteList/' + listElement.id,
     method: 'POST'
   };
+
   sendRequest(req, afterDelete(listElement));
 };
 
-const markItem = (event, taskElement) => {
+const markItem = (taskElement) => {
   const req = {
     url: '/item/markItem/' + taskElement.id,
     method: 'post',
@@ -59,6 +61,7 @@ const addNewItemReq = (event, id, tasksElement) => {
     method: 'POST',
     headers: [{ header: 'content-type', value: 'application/json' }],
     body: JSON.stringify(body)
-  }
+  };
+
   sendRequest(req, showNewItem(tasksElement));
 };

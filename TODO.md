@@ -2,7 +2,6 @@
 
   - ## new
 
-    - [ ] Add username in the home page
     - [ ] Confirm before deleting
     - [ ] Default title for a new list
     - [ ] Separate login page from registration page
@@ -10,22 +9,11 @@
 
   - ## styles
 
-    - [ ] Change the colors of the pages
-    - [ ] Use a coolors palette
-    - [ ] Apply padding in input fields
-    - [ ] Remove default button border
-    - [ ] Apply border radius on cards
-    - [ ] Apply padding in index page
     - [ ] Add colors of red and green for login/sign-up messages
-    - [ ] Prevent default for add-list
-    - [ ] Remove background blue color of home
-    - [ ] Use same trushcan icon
-    - [ ] Remove input outline
 
 
   - ## others
 
-    - [ ] Add try catch block around start listening on app
     - [ ] Change test descriptions
     - [ ] Make util file
     - [ ] Add try catch blocks around fs
@@ -35,6 +23,19 @@
 
 # DONE
 
+
+  - [x] Prevent default for add-list
+  - [x] ~~Remove background blue color of home~~ changed color theme
+  - [x] ~~Use same trushcan icon~~ used icons
+  - [x] Remove input outline
+  - [x] Change the colors of the pages
+  - [x] Use a coolors palette
+  - [x] Apply padding in input fields
+  - [X] Remove default button border
+  - [X] Apply border radius on cards
+  - [x] Apply padding in index page
+  - [x] Add username in the home page
+  - [x] ~~Add try catch block around start listening on app~~ solved with listen().on('error')
   - [x] Change the not(!) logics
   - [x] Remove unnecessary next functions
   - [x] ~~Consider changing err to status for login and signup messages~~ changed
