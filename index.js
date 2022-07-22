@@ -25,7 +25,9 @@ const main = (PORT) => {
   const app = createApp(config, logger, fs);
 
   app.listen(PORT, () =>
-    console.log(`App listening on ${PORT}`));
+    console.log(`App listening on ${PORT}`))
+    .on('error', (err) => { console.log(err.message) });
+
 };
 
 main(4444);
