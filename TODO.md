@@ -2,12 +2,17 @@
 
   - ## new
 
-    - [ ] Confirm before deleting
     - [ ] Separate login page from registration page
-
+    - [ ] Confirm before deleting
+    - [ ] Edit title
+    - [ ] Edit task
+    - [ ] Search by title
+    - [ ] Search by task
+    - [ ] Search by completion
 
   - ## styles
 
+    - [ ] Add icon in todo list header for edit feature
 
 
   - ## others
@@ -21,7 +26,8 @@
 
 # DONE
 
-
+  - [x] Refactor the createElementTree
+  - [x] Shift focus to add items after adding a list
   - [x] ~~Default title for a new list~~ Made title a required field
   - [x] Add colors of red and green for login/sign-up messages
   - [x] Prevent default for add-list

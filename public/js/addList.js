@@ -19,6 +19,7 @@ const displayNewAddedList = (status, res) => {
   const newList = createList(id, title, []);
   const lists = document.querySelector('.lists');
   lists.prepend(newList);
+  newList.querySelector('input').focus();
 };
 
 const newListReq = () => {

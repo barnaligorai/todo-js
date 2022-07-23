@@ -51,8 +51,8 @@ const showNewItem = (tasksElement) => (status, res) => {
   tasksElement.prepend(taskElement);
 };
 
-const addNewItemReq = (event, id, tasksElement) => {
-  const form = event.path[1];
+const addNewItemReq = (id, tasksElement) => {
+  const form = document.querySelector(`#${id} > form`);
   const formData = new FormData(form);
   const task = formData.get('task');
   const body = { id, task };

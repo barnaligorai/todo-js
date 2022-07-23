@@ -1,10 +1,15 @@
-const createElementTree = (elements) => {
-  const [tag, ...children] = elements;
-  const [tagName, className, id] = tag.split(/[.#]/);
-  const parent = document.createElement(tagName);
+const addAttributes = (element, attributes) => {
+  for (const attribute in attributes) {
+    element[attribute] = attributes[attribute];
+  }
+  return element;
+};
 
-  if (className) parent.className = className.split(',').join(' ');
-  if (id) parent.id = id;
+const createElementTree = (elements) => {
+  const [tag, attributes, ...children] = elements;
+  const parent = document.createElement(tag);
+
+  addAttributes(parent, attributes);
 
   if (children && !Array.isArray(children[0])) {
     parent.innerText = children[0].toString();
@@ -19,16 +24,16 @@ const createElementTree = (elements) => {
 
 const createSingleTask = (item) => {
   const { id, done, task } = item;
+
   const taskTemplate = [
-    `li.item#${id}`,
-    ['div.task', task],
-    ['div.delete,fa-solid,fa-trash', ''],
+    'li', { className: 'item', id: id },
+    ['input', { type: 'checkbox', className: 'checkbox' }, ''],
+    ['div', { className: 'task' }, task],
+    ['div', { className: 'delete fa-solid fa-trash' }, ''],
   ];
 
   const taskElement = createElementTree(taskTemplate);
-  const checkboxElement = document.createElement('input');
-  checkboxElement.type = 'checkbox';
-  checkboxElement.classList = 'checkbox'
+  const checkboxElement = taskElement.querySelector('.checkbox');
   checkboxElement.onclick = () => markItem(taskElement);
 
   if (done) {
@@ -38,7 +43,6 @@ const createSingleTask = (item) => {
   const deleteElement = taskElement.querySelector('.delete');
   deleteElement.onclick = () => deleteTask(taskElement);
 
-  taskElement.prepend(checkboxElement);
   return taskElement;
 };
 
@@ -56,34 +60,27 @@ const createTasks = (tasks) => {
 
 const createList = (id, title, tasks) => {
   const listTemplate = [
-    `div.list#${id}`,
-    ['h3.list-header',
-      ['div.title', title],
-      ['div.delete,fa-solid,fa-trash', '']
-    ],
-  ];
+    'div', { id: id, className: 'list' },
+    ['h3', { className: 'list-header' },
+      ['div', { className: 'title' }, title],
+      ['div', { className: 'edit fa-solid fa-pencil' }, ''],
+      ['div', { className: 'delete fa-solid fa-trash' }, '']],
+    ['form', { className: 'add-item' },
+      ['input', { name: 'task', required: 'true', placeholder: 'What needs to be done' }, '']]];
+
   const listElement = createElementTree(listTemplate);
   const tasksElement = createTasks(tasks);
 
   const deleteElement = listElement.querySelector('.delete');
   deleteElement.onclick = () => deleteList(listElement);
 
-  const addItemForm = document.createElement('form');
-  addItemForm.className = 'add-item';
-
-  const inputElement = document.createElement('input');
-  inputElement.placeholder = 'What needs to be done';
-  inputElement.name = 'task';
-  inputElement.onkeydown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      addNewItemReq(event, id, tasksElement);
-      inputElement.value = '';
-    }
+  const form = listElement.querySelector('form');
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    addNewItemReq(id, tasksElement);
+    form.reset();
   };
 
-  addItemForm.appendChild(inputElement);
-  listElement.appendChild(addItemForm);
   listElement.appendChild(tasksElement);
   return listElement;
 };
