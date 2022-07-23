@@ -55,11 +55,31 @@ describe('Test todo', () => {
     it('should serve the start page for GET /', (done) => {
       request(myApp)
         .get('/')
-        .expect('content-type', /html/)
-        .expect(/Stay/)
-        .expect(200, done);
+        .expect('location', '/login')
+        .expect(302, done);
     });
 
+    it('should not serve home page for GET /home when the user is not already logged in', (done) => {
+      request(myApp)
+        .get('/home')
+        .expect('location', '/login')
+        .expect(302, done);
+    });
+
+    it('should serve home page for GET /home when the user is already logged in', (done) => {
+      let cookie;
+      request(myApp)
+        .post('/login')
+        .send('name=bani&&password=abcd')
+        .end((err, res) => {
+          cookie = res.headers['set-cookie'];
+          request(myApp)
+            .get('/home')
+            .set('Cookie', cookie)
+            .expect(/TODO/)
+            .expect(200, done);
+        });
+    });
   });
 
   describe('POST /sign-up', () => {
@@ -67,7 +87,7 @@ describe('Test todo', () => {
       request(myApp)
         .post('/sign-up')
         .send('name=barnali&&password=abcd')
-        .expect('location', /606/)
+        .expect('location', '/login')
         .expect(302, done)
     });
 
@@ -75,7 +95,7 @@ describe('Test todo', () => {
       request(myApp)
         .post('/sign-up')
         .send('name=bani&&password=abcd')
-        .expect('location', /605/)
+        .expect('location', /603/)
         .expect(302, done);
     });
   });
@@ -85,7 +105,7 @@ describe('Test todo', () => {
       request(myApp)
         .post('/login')
         .send('name=bani&&password=abcd')
-        .expect('location', /home/)
+        .expect('location', '/')
         .expect(302, done);
     });
 
@@ -115,31 +135,8 @@ describe('Test todo', () => {
           request(myApp)
             .get('/login')
             .set('Cookie', cookie)
-            .expect('location', '/home')
+            .expect('location', '/')
             .expect(302, done);
-        });
-    });
-  });
-
-  describe('GET /home', () => {
-    it('should not serve home page for GET /home when the user is not already logged in', (done) => {
-      request(myApp)
-        .get('/home')
-        .expect(302, done);
-    });
-
-    it('should serve home page for GET /home when the user is already logged in', (done) => {
-      let cookie;
-      request(myApp)
-        .post('/login')
-        .send('name=bani&&password=abcd')
-        .end((err, res) => {
-          cookie = res.headers['set-cookie'];
-          request(myApp)
-            .get('/home')
-            .set('Cookie', cookie)
-            .expect(/TODO/)
-            .expect(200, done);
         });
     });
   });

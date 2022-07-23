@@ -2,7 +2,6 @@
 
   - ## new
 
-    - [ ] Separate login page from registration page
     - [ ] Confirm before deleting
     - [ ] Edit title
     - [ ] Edit task
@@ -12,20 +11,21 @@
 
   - ## styles
 
-    - [ ] Add icon in todo list header for edit feature
 
 
   - ## others
 
+    - [ ] Consider array over object for storing lists and items for order
     - [ ] Change test descriptions
     - [ ] Make util file
     - [ ] Add try catch blocks around fs
-    - [ ] Consider array over object for storing lists and items for order
     - [ ] Consider changing name of list createdBy to user
   
 
 # DONE
 
+  - [x] Add icon in todo list header for edit feature
+  - [x] Separate login page from registration page
   - [x] Refactor the createElementTree
   - [x] Shift focus to add items after adding a list
   - [x] ~~Default title for a new list~~ Made title a required field

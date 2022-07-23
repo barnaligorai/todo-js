@@ -3,7 +3,6 @@ const express = require('express');
 
 const { Lists } = require('./models/lists.js');
 const { Items } = require('./models/items.js');
-const { serveIndexPage } = require('./handlers/serveIndexPage.js');
 const { serveHomePage } = require('./handlers/serveHomePage.js');
 const { notFoundHandler } = require('./middlewares/notFoundHandler.js');
 const { todoHandler } = require('./routes/todoRouter.js');
@@ -34,13 +33,12 @@ const createApp = (config, logger, fs) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  app.get('/', serveIndexPage);
+  app.get(['/', '/home'], serveHomePage);
 
   app.use(authRouter(users, files.usersFile, fs));
 
   app.use(['/list', '/item'], todoHandler(lists, items, files, fs));
 
-  app.get('/home', serveHomePage);
   app.use(express.static(staticDir));
   app.use(notFoundHandler);
 

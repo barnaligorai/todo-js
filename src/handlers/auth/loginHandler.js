@@ -11,7 +11,7 @@ const newLogin = (users) => (req, res) => {
   }
 
   req.session.name = name;
-  res.redirect(302, '/home');
+  res.redirect(302, '/');
 };
 
 module.exports = { newLogin };

@@ -8,7 +8,7 @@ const alreadyLoggedIn = (req, res, next) => {
     next();
     return;
   }
-  res.redirect(302, '/home');
+  res.redirect(302, '/');
 };
 
 const authRouter = (users, usersFile, fs) => {
