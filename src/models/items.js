@@ -44,6 +44,13 @@ class Items {
     delete this.#db[taskId];
     return task;
   }
+
+  updateTask(id, newTask) {
+    const item = this.#db[id];
+    const oldTask = item.task;
+    item.task = newTask;
+    return { id, oldTask, newTask };
+  }
 }
 
 module.exports = { Items };

@@ -203,5 +203,25 @@ describe('Todo Router', () => {
           .expect(200, done);
       });
     });
+
+    describe('POST /item/edit-task', () => {
+      it('should redirect to login page for POST /item/edit-task user is not logged in', (done) => {
+        request(myApp)
+          .post('/list/edit-list')
+          .send({ id: 'i0', task: 'new task' })
+          .expect('location', '/login')
+          .expect(302, done);
+      });
+
+
+      it('should edit the mentioned task for POST /item/edit-task when the user is logged in', (done) => {
+        request(myApp)
+          .post('/item/edit-task')
+          .set('Cookie', cookie)
+          .send({ id: 'i0', task: 'new name' })
+          .expect(/new name/)
+          .expect(200, done);
+      });
+    });
   });
 });

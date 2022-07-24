@@ -6,6 +6,7 @@ const { deleteList } = require('../handlers/todo/deleteList');
 const { markItem } = require('../handlers/todo/markItem');
 const { serveLists } = require('../handlers/todo/serveLists');
 const { editListTitle } = require('../handlers/todo/editListTitle.js');
+const { editTask } = require('../handlers/todo/editTask');
 
 const auth = (req, res, next) => {
   if (req.session.isNew) {
@@ -22,6 +23,7 @@ const todoHandler = (lists, items, { itemsFile, listsFile }, fs) => {
   todoRouter.post('/add-item', addNewItem(items, itemsFile, fs));
   todoRouter.post('/markItem/:itemId', markItem(items, itemsFile, fs));
   todoRouter.post('/deleteItem/:itemId', deleteItem(items, itemsFile, fs));
+  todoRouter.post('/edit-task', editTask(items, itemsFile, fs));
 
   todoRouter.get('/all-lists', serveLists(lists, items));
   todoRouter.post('/edit-title', editListTitle(lists, listsFile, fs));

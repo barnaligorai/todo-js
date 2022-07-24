@@ -2,10 +2,10 @@
 
   - ## new
 
-    - [ ] Edit task
     - [ ] Search by title
     - [ ] Search by task
     - [ ] Search by completion
+    - [ ] Validate edit task
     - [ ] Validate edit title
     - [ ] Confirm before deleting
 
@@ -24,6 +24,7 @@
 
 # DONE
 
+  - [x] Edit task
   - [x] Edit title
   - [x] Add icon in todo list header for edit feature
   - [x] Separate login page from registration page

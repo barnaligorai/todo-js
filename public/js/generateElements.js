@@ -29,6 +29,7 @@ const createSingleTask = (item) => {
     'li', { className: 'item', id: id },
     ['input', { type: 'checkbox', className: 'checkbox', onclick: markItem, checked: done }, ''],
     ['div', { className: 'task' }, task],
+    ['div', { className: 'edit fa-solid fa-pencil', onclick: editTask }, ''],
     ['div', { className: 'delete fa-solid fa-trash', onclick: deleteTask }, ''],
   ];
 
