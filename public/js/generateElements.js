@@ -27,21 +27,12 @@ const createSingleTask = (item) => {
 
   const taskTemplate = [
     'li', { className: 'item', id: id },
-    ['input', { type: 'checkbox', className: 'checkbox' }, ''],
+    ['input', { type: 'checkbox', className: 'checkbox', onclick: markItem, checked: done }, ''],
     ['div', { className: 'task' }, task],
-    ['div', { className: 'delete fa-solid fa-trash' }, ''],
+    ['div', { className: 'delete fa-solid fa-trash', onclick: deleteTask }, ''],
   ];
 
   const taskElement = createElementTree(taskTemplate);
-  const checkboxElement = taskElement.querySelector('.checkbox');
-  checkboxElement.onclick = () => markItem(taskElement);
-
-  if (done) {
-    checkboxElement.checked = true;
-  }
-
-  const deleteElement = taskElement.querySelector('.delete');
-  deleteElement.onclick = () => deleteTask(taskElement);
 
   return taskElement;
 };
@@ -64,22 +55,12 @@ const createList = (id, title, tasks) => {
     ['h3', { className: 'list-header' },
       ['div', { className: 'title' }, title],
       ['div', { className: 'edit fa-solid fa-pencil' }, ''],
-      ['div', { className: 'delete fa-solid fa-trash' }, '']],
-    ['form', { className: 'add-item' },
+      ['div', { className: 'delete fa-solid fa-trash', onclick: deleteList }, '']],
+    ['form', { className: 'add-item', onsubmit: submitNewItemReq },
       ['input', { name: 'task', required: 'true', placeholder: 'What needs to be done' }, '']]];
 
   const listElement = createElementTree(listTemplate);
   const tasksElement = createTasks(tasks);
-
-  const deleteElement = listElement.querySelector('.delete');
-  deleteElement.onclick = () => deleteList(listElement);
-
-  const form = listElement.querySelector('form');
-  form.onsubmit = (event) => {
-    event.preventDefault();
-    addNewItemReq(id, tasksElement);
-    form.reset();
-  };
 
   listElement.appendChild(tasksElement);
   return listElement;

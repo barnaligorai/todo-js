@@ -2,8 +2,8 @@
 
   - ## new
 
-    - [ ] Confirm before deleting
     - [ ] Edit title
+    - [ ] Confirm before deleting
     - [ ] Edit task
     - [ ] Search by title
     - [ ] Search by task

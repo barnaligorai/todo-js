@@ -1,4 +1,3 @@
-const { indexPage } = require("../../views/indexPage");
 const { loginPage } = require("../../views/loginPage");
 const { signUpPage } = require("../../views/signUpPage");
 
