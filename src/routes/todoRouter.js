@@ -5,6 +5,7 @@ const { deleteItem } = require('../handlers/todo/deleteItem');
 const { deleteList } = require('../handlers/todo/deleteList');
 const { markItem } = require('../handlers/todo/markItem');
 const { serveLists } = require('../handlers/todo/serveLists');
+const { editListTitle } = require('../handlers/todo/editListTitle.js');
 
 const auth = (req, res, next) => {
   if (req.session.isNew) {
@@ -23,6 +24,7 @@ const todoHandler = (lists, items, { itemsFile, listsFile }, fs) => {
   todoRouter.post('/deleteItem/:itemId', deleteItem(items, itemsFile, fs));
 
   todoRouter.get('/all-lists', serveLists(lists, items));
+  todoRouter.post('/edit-title', editListTitle(lists, listsFile, fs));
   todoRouter.post('/add-list', addNewList(lists, listsFile, fs));
   todoRouter.post('/deleteList/:listId', deleteList(lists, listsFile, fs));
 

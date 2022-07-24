@@ -37,6 +37,13 @@ class Lists {
     delete this.#db[id];
     return list;
   }
+
+  updateTitle(id, newTitle) {
+    const list = this.#db[id];
+    const oldTitle = list.title;
+    list.title = newTitle;
+    return { id, oldTitle, newTitle };
+  }
 }
 
 module.exports = { Lists };

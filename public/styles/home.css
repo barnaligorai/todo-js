@@ -14,7 +14,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.body > header{
+.body > header {
   padding: 0.5em;
   background-color: white;
   display: flex;
@@ -22,7 +22,7 @@ body {
   align-items: center;
 }
 
-.logout{
+.logout {
   border-left: 0.5px solid gray;
   font-size: 0.9em;
   font-weight: 100;
@@ -31,7 +31,7 @@ body {
   text-decoration: none;
 }
 
-.logout:hover{
+.logout:hover {
   color: dimgray;
 }
 
@@ -52,7 +52,7 @@ main {
   padding: 0 0.5em;
 }
 
-.user{
+.user {
   display: flex;
   align-items: center;
   column-gap: 0.2em;
@@ -123,6 +123,14 @@ input[type=checkbox]{
 .list-header .title {
   width: 80%;
   word-wrap: break-word;
+  font-size: 1.2em;
+}
+
+.input-title {
+  border: none;
+  background: none;
+  color: white;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.529);
 }
 
 .delete {

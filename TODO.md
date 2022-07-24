@@ -2,12 +2,12 @@
 
   - ## new
 
-    - [ ] Edit title
-    - [ ] Confirm before deleting
     - [ ] Edit task
     - [ ] Search by title
     - [ ] Search by task
     - [ ] Search by completion
+    - [ ] Validate edit title
+    - [ ] Confirm before deleting
 
   - ## styles
 
@@ -24,6 +24,7 @@
 
 # DONE
 
+  - [x] Edit title
   - [x] Add icon in todo list header for edit feature
   - [x] Separate login page from registration page
   - [x] Refactor the createElementTree

@@ -54,7 +54,7 @@ const createList = (id, title, tasks) => {
     'div', { id: id, className: 'list' },
     ['h3', { className: 'list-header' },
       ['div', { className: 'title' }, title],
-      ['div', { className: 'edit fa-solid fa-pencil' }, ''],
+      ['div', { className: 'edit fa-solid fa-pencil', onclick: editListTitle }, ''],
       ['div', { className: 'delete fa-solid fa-trash', onclick: deleteList }, '']],
     ['form', { className: 'add-item', onsubmit: submitNewItemReq },
       ['input', { name: 'task', required: 'true', placeholder: 'What needs to be done' }, '']]];
