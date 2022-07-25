@@ -5,9 +5,6 @@
     - [ ] Search by title
     - [ ] Search by task
     - [ ] Search by completion
-    - [ ] Validate edit task
-    - [ ] Validate edit title
-    - [ ] Confirm before deleting
 
   - ## styles
 
@@ -24,6 +21,9 @@
 
 # DONE
 
+  - [x] Confirm before deleting => using confirm
+  - [x] Validate edit task => Giving alert message
+  - [x] Validate edit title => Giving alert message
   - [x] Edit task
   - [x] Edit title
   - [x] Add icon in todo list header for edit feature

@@ -10,25 +10,30 @@ const afterDelete = id => (status, res) => {
 };
 
 const deleteTask = (event) => {
-  const id = event.target.closest('.item').id;
+  const result = confirm('Delete this task?');
+  if (result) {
+    const id = event.target.closest('.item').id;
 
-  const req = {
-    url: '/item/deleteItem/' + id,
-    method: 'POST'
-  };
+    const req = {
+      url: '/item/deleteItem/' + id,
+      method: 'POST'
+    };
 
-  sendRequest(req, afterDelete(id));
+    sendRequest(req, afterDelete(id));
+  }
 };
 
 const deleteList = (event) => {
-  e = event;
-  const id = event.target.closest('.list').id;
-  const req = {
-    url: '/list/deleteList/' + id,
-    method: 'POST'
-  };
+  const result = confirm('Delete this list?');
+  if (result) {
+    const id = event.target.closest('.list').id;
+    const req = {
+      url: '/list/deleteList/' + id,
+      method: 'POST'
+    };
 
-  sendRequest(req, afterDelete(id));
+    sendRequest(req, afterDelete(id));
+  }
 };
 
 const markItem = (event) => {
