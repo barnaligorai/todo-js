@@ -46,19 +46,22 @@ const addNewList = () => {
   };
 };
 
-const generateHomePage = (status, res) => {
-  if (status !== 200) {
-    console.log('Something went wrong');
-    return;
-  }
-
+const renderLists = (lists) => {
   const listsElement = document.querySelector('.lists');
-  const lists = JSON.parse(res).reverse();
+  listsElement.replaceChildren();
 
   lists.forEach(({ id, title, tasks }) => {
     const list = createList(id, title, tasks);
     listsElement.appendChild(list);
   });
+};
+
+const generateHomePage = (status, res) => {
+  if (status !== 200) {
+    console.log('Something went wrong');
+    return;
+  }
+  renderLists(JSON.parse(res).reverse());
 };
 
 const generateAllLists = () => {
@@ -72,6 +75,7 @@ const generateAllLists = () => {
 
 const main = () => {
   generateAllLists();
+  enableSearch();
   addNewList();
 };
 

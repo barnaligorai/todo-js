@@ -2,12 +2,12 @@
 
   - ## new
 
-    - [ ] Search by title
-    - [ ] Search by task
     - [ ] Search by completion
 
   - ## styles
 
+    - [ ] Style the search bar
+    - [ ] Grab attention for the current editing input 
 
 
   - ## others
@@ -21,6 +21,9 @@
 
 # DONE
 
+  - [x] Disable other features while editing one thing
+  - [x] Search by title
+  - [x] Search by task
   - [x] Confirm before deleting => using confirm
   - [x] Validate edit task => Giving alert message
   - [x] Validate edit title => Giving alert message

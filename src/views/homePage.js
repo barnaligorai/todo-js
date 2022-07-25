@@ -8,15 +8,21 @@ const home = (username) => `<html>
   <script src="js/todoActions.js"></script>
   <script src="js/generateElements.js"></script>
   <script src="js/edit.js"></script>
+  <script src="js/lists.js"></script>
 </head>
 <body>
   <div class="body">
     <header>
-      <h1>TODO</h1>
-      <div class="user">
-          <div class="username">${username}</div>
-          <a href="/logout" class="logout material-icons">logout</a>
-      </div>
+    <h1>TODO</h1>
+    <div class="user">Hello ${username}</div>
+    <form class="search-form">
+    <input class="search-bar" type="text" name="query" placeholder="search here"/>
+    <select name="search-for" class="search-options">
+      <option value="list" selected>list</option>
+      <option value="task">task</option>
+    </select>
+    </form>
+    <a href="/logout" class="logout material-icons">logout</a>
     </header>
     <main>
       <form id="add-list">

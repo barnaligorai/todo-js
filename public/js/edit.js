@@ -60,7 +60,8 @@ const editListTitle = (event) => {
       required: true,
       placeholder: 'Enter title',
       value: prevTitle,
-      onkeydown: editTitle
+      onkeydown: editTitle,
+      onblur: abortEditTitle(list, prevTitle)
     }, ''
   ];
   const input = createElementTree(inputTemplate);
@@ -137,16 +138,13 @@ const editTask = (event) => {
       required: true,
       placeholder: 'What needs to be done',
       value: task.innerText,
-      onkeydown: editTaskReq
+      onkeydown: editTaskReq,
+      onblur: abortEditTask(item, prevTask)
     }, ''
   ];
   const input = createElementTree(inputTemplate);
 
-  const cancelTemplate = [
-    'div', {
-      className: 'cancel fa-solid fa-xmark',
-      onclick: abortEditTask(item, prevTask)
-    }, ''];
+  const cancelTemplate = ['div', { className: 'cancel fa-solid fa-xmark', onclick: abortEditTask(item, prevTask) }, ''];
   const cancelElement = createElementTree(cancelTemplate);
 
   task.replaceWith(input);

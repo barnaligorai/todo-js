@@ -18,13 +18,13 @@ body {
   padding: 0.5em;
   background-color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
 }
 
 .logout {
   border-left: 0.5px solid gray;
-  font-size: 0.9em;
+  font-size: 1.2em;
   font-weight: 100;
   padding: 0 0.5em;
   color: red;
@@ -48,17 +48,12 @@ main {
   align-items: center;
 }
 
-.username {
-  padding: 0 0.5em;
-}
-
 .user {
-  display: flex;
-  align-items: center;
-  column-gap: 0.2em;
-  justify-content: space-between;
+  width: 60%;
+  padding: 0 0.5em;
   font-size: 1.5em;
   color: rgba(100,100,100);
+  text-align: center;
 }
 
 .lists {
@@ -103,13 +98,14 @@ input{
 }
 
 input[type=checkbox]{
-  accent-color: rgb(28, 159, 28);
+  accent-color: gray;
   width: 1.5em;
   aspect-ratio: 1;
   cursor: pointer;
 }
 
 .list-header {
+  min-height: 2em;
   color: white;
   background-color: hsl(0, 0%, 45%);
   width: 100%;
@@ -118,26 +114,27 @@ input[type=checkbox]{
   justify-content: space-between;
   align-items: center;
   text-transform: capitalize;
+  font-size: 1.2em;
 }
 
 .list-header .title {
   width: 80%;
   word-wrap: break-word;
-  font-size: 1.2em;
 }
 
 .input-title {
+  font-size: 1.3em;
   border: none;
   background: none;
   color: white;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.529);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.505);
 }
 
 .input-task {
   border: none;
-  font-size: 1em;
-  color: dimgray;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.529);
+  font-size: 1.2em;
+  /* color: gray; */
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.929);
 }
 
 .delete {
@@ -168,6 +165,7 @@ input[type=checkbox]{
 }
 
 .items > li {
+  min-height: 2.5em;
   width: 80%;
   margin-top: 0.2em;
   padding: 0.5em;
@@ -182,7 +180,7 @@ input[type=checkbox]{
 }
 
 .items .task {
-  width: 80%;
+  width: 70%;
   overflow-wrap: break-word;
 }
 
@@ -190,6 +188,21 @@ input[type=checkbox]{
  transform: scale(1.2);
 }
 
-.edit {
+.edit, .cancel {
   font-size: 0.8em;
+  cursor: pointer;
+}
+
+.search-form input{
+  color: gray;
+  font-weight: 100;
+  font-size: 1em;
+  min-width: 200px;
+  border: none;
+  border-bottom: 0.5px solid gray;
+  padding: 0.1em 0.5em;
+}
+
+.search-form select {
+  margin-right: 0.2em;
 }
