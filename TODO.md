@@ -2,12 +2,11 @@
 
   - ## new
 
-  - [ ] Disable other features while editing one thing <!-- broken -->
 
 
   - ## styles
 
-
+    - [ ] Consider different place for filter
 
   - ## others
 
@@ -20,6 +19,7 @@
 
 # DONE
 
+  - [x] Disable other features while editing one thing
   - [x] ~~Search by completion~~ Added a filter with search
   - [x] Style the search bar
   - [x] Grab attention for the current editing input 

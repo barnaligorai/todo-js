@@ -47,9 +47,10 @@ class Items {
 
   updateTask(id, newTask) {
     const item = this.#db[id];
-    const oldTask = item.task;
+    const { done, task } = item;
+    const oldTask = task;
     item.task = newTask;
-    return { id, oldTask, newTask };
+    return { id, done, oldTask, newTask };
   }
 }
 

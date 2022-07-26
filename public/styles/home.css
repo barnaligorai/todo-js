@@ -213,16 +213,37 @@ input[type=checkbox]{
   opacity: 0.5;
 }
 
-.search-form select {
+select {
   border: none;
   border-bottom: 0.5px solid grey;
   width: 4em;
   color: dimgray;
   font-size: 0.9em;
   padding-left: 0.3em;
+  background: none;
 }
 
-.search-form .filter {
+.add-and-filter {
+  width: 100%;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.filter {
+  min-width: 10em;
+  display: flex;
+  justify-content: center;
+  column-gap: 1em;
+  align-items: baseline;
+}
+
+.filter select {
   width: 5em;
   text-align: center;
+}
+
+.filter label{
+  color: rgba(169, 169, 169, 0.935);
 }

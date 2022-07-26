@@ -15,26 +15,31 @@ const home = (username) => `<html>
     <header>
     <h1>TODO</h1>
     <div class="user">Hello ${username}</div>
-    <form class="search-form">
+    <form class="search-form" id="search-form">
     <input class="search-bar" type="text" name="query" placeholder="search here"/>
     <select name="search-for" class="search-options">
       <option value="list" selected>list</option>
       <option value="task">task</option>
     </select>
-    <select name="filter-by" class="filter">
-      <option value="all" selected>all</option>
-      <option value="done">done</option>
-      <option value="undone">undone</option>
-    </select>
     </form>
     <a href="/logout" class="logout material-icons">logout</a>
     </header>
     <main>
-      <form id="add-list">
-        <input type="text" name="title" placeholder="Add a new list" required>
-      </form>
-      <div class="lists">
+      <div class="add-and-filter">
+        <form id="add-list">
+          <input type="text" name="title" placeholder="Add a new list" required>
+        </form>
+        <div class="filter">
+          <label for="filter-by">Filter :</label>
+          <select name="filter-by" form="search-form">
+            <option value="all" selected>all</option>
+            <option value="done">done</option>
+            <option value="undone">undone</option>
+          </select>
+        </div>
       </div>
+      <div class="lists">
+    </div>
     </main>
   </div>
 </body>

@@ -88,7 +88,7 @@ const enableSearch = () => {
   const searchForm = document.querySelector('.search-form');
 
   const searchList = searchForm.querySelector('.search-options');
-  const filterList = searchForm.querySelector('.filter');
+  const filterList = document.querySelector('.filter');
 
   searchForm.onsubmit = (event) => {
     event.preventDefault();
