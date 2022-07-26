@@ -21,6 +21,11 @@ const home = (username) => `<html>
       <option value="list" selected>list</option>
       <option value="task">task</option>
     </select>
+    <select name="filter-by" class="filter">
+      <option value="all" selected>all</option>
+      <option value="done">done</option>
+      <option value="undone">undone</option>
+    </select>
     </form>
     <a href="/logout" class="logout material-icons">logout</a>
     </header>

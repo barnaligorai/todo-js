@@ -2,12 +2,11 @@
 
   - ## new
 
-    - [ ] Search by completion
+  - [ ] Disable other features while editing one thing <!-- broken -->
+
 
   - ## styles
 
-    - [ ] Style the search bar
-    - [ ] Grab attention for the current editing input 
 
 
   - ## others
@@ -21,7 +20,9 @@
 
 # DONE
 
-  - [x] Disable other features while editing one thing
+  - [x] ~~Search by completion~~ Added a filter with search
+  - [x] Style the search bar
+  - [x] Grab attention for the current editing input 
   - [x] Search by title
   - [x] Search by task
   - [x] Confirm before deleting => using confirm

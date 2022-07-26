@@ -3,31 +3,48 @@ class Lists {
     this.lists = lists;
   }
 
-  searchListsWith(text) {
+  #filter(lists, filterBy) {
+    if (filterBy === 'all') {
+      return lists;
+    }
+
+    const filteredList = [];
+    const status = filterBy === 'done';
+    lists.forEach(list => {
+      const { id, title, tasks } = list;
+      const items = tasks.filter(task => task.done === status);
+      if (items.length > 0) filteredList.push({ id, title, tasks: items });
+    });
+
+    return filteredList;
+  }
+
+  searchListsWith(text, filterBy) {
     let lists = this.lists.slice(0);
+
     if (text) {
       lists = this.lists.filter(({ title }) =>
         title.toLowerCase().includes(text.toLowerCase()));
     }
-    return lists;
+
+    return this.#filter(lists, filterBy);
   }
 
-  searchItemsWith(text) {
+  searchItemsWith(text, filterBy) {
     let lists = this.lists.slice(0);
 
     if (text) {
       lists = [];
       this.lists.forEach(list => {
         const { id, title, tasks } = list;
-        const items = tasks.filter(({ task }) => {
-          return task.toLowerCase().includes(text.toLowerCase());
-        });
+        const items = tasks.filter(({ task }) =>
+          task.toLowerCase().includes(text.toLowerCase()));
 
         if (items.length > 0) lists.push({ id, title, tasks: items });
       });
     }
 
-    return lists;
+    return this.#filter(lists, filterBy);
   }
 
   getAll() {
@@ -35,36 +52,33 @@ class Lists {
   }
 }
 
-const showListsWith = (query) => {
-  const lists = dataStore.searchListsWith(query);
-  renderLists(lists.reverse());
-};
-
-const showItemsWith = (query) => {
-  const lists = dataStore.searchItemsWith(query);
-  renderLists(lists.reverse());
-};
-
-const search = (searchForm) => {
+const search = () => {
   const req = {
     url: '/list/all-lists',
     method: 'GET'
   };
 
   sendRequest(req, (status, res) => {
+    if (status !== 200) {
+      console.log('something went wrong.');
+      return;
+    }
+
     dataStore = new Lists(JSON.parse(res));
 
+    const searchForm = document.querySelector('.search-form');
     const formData = new FormData(searchForm);
     const query = formData.get('query');
     const searchFor = formData.get('search-for');
+    const filterBy = formData.get('filter-by');
 
     if (searchFor === 'list') {
-      showListsWith(query);
+      renderLists(dataStore.searchListsWith(query, filterBy).reverse());
       return;
     }
 
     if (searchFor === 'task') {
-      showItemsWith(query);
+      renderLists(dataStore.searchItemsWith(query, filterBy).reverse());
       return;
     }
   });
@@ -72,10 +86,18 @@ const search = (searchForm) => {
 
 const enableSearch = () => {
   const searchForm = document.querySelector('.search-form');
+
+  const searchList = searchForm.querySelector('.search-options');
+  const filterList = searchForm.querySelector('.filter');
+
   searchForm.onsubmit = (event) => {
     event.preventDefault();
-    search(searchForm);
-  }
+    search();
+  };
+
+  searchList.onchange = search;
+  filterList.onchange = search;
+  searchForm.onkeydown = search;
 };
 
 let dataStore;

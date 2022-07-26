@@ -42,18 +42,18 @@ body {
  font-size: 3em;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .user {
   width: 60%;
   padding: 0 0.5em;
   font-size: 1.5em;
   color: rgba(100,100,100);
   text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lists {
@@ -133,7 +133,6 @@ input[type=checkbox]{
 .input-task {
   border: none;
   font-size: 1.2em;
-  /* color: gray; */
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.929);
 }
 
@@ -193,8 +192,14 @@ input[type=checkbox]{
   cursor: pointer;
 }
 
+.search-form {
+  display: flex;
+  min-height: 1.5em;
+  column-gap: 0.5em;
+  opacity: 0.8;
+}
+
 .search-form input{
-  color: gray;
   font-weight: 100;
   font-size: 1em;
   min-width: 200px;
@@ -203,6 +208,21 @@ input[type=checkbox]{
   padding: 0.1em 0.5em;
 }
 
+::placeholder { 
+  color: grey;
+  opacity: 0.5;
+}
+
 .search-form select {
-  margin-right: 0.2em;
+  border: none;
+  border-bottom: 0.5px solid grey;
+  width: 4em;
+  color: dimgray;
+  font-size: 0.9em;
+  padding-left: 0.3em;
+}
+
+.search-form .filter {
+  width: 5em;
+  text-align: center;
 }
