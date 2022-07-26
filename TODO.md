@@ -3,10 +3,8 @@
   - ## new
 
 
-
   - ## styles
 
-    - [ ] Consider different place for filter
 
   - ## others
 
@@ -15,10 +13,12 @@
     - [ ] Make util file
     - [ ] Add try catch blocks around fs
     - [ ] Consider changing name of list createdBy to user
-  
+    - [ ] Confirm before deleting
 
 # DONE
 
+  - [x] Consider different place for filter
+  - [x] Add favicon
   - [x] Disable other features while editing one thing
   - [x] ~~Search by completion~~ Added a filter with search
   - [x] Style the search bar

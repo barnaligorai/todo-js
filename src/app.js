@@ -1,5 +1,7 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
+const favicon = require('serve-favicon');
+const path = require('path');
 
 const { Lists } = require('./models/lists.js');
 const { Items } = require('./models/items.js');
@@ -27,7 +29,9 @@ const createApp = (config, logger, fs) => {
   const items = new Items(itemsDb);
 
   const app = express();
+
   app.use(logger);
+  app.use(favicon(path.join('public/favicon', 'favicon.ico')));
   app.use(cookieSession(session));
   app.use(express.raw());
   app.use(express.json());
