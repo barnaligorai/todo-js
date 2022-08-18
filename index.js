@@ -30,4 +30,4 @@ const main = (PORT) => {
 
 };
 
-main(4444);
+main(process.env.PORT);
