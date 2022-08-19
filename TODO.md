@@ -17,6 +17,7 @@
 
 # DONE
 
+  - [x] Deployed to heroku
   - [x] Consider different place for filter
   - [x] Add favicon
   - [x] Disable other features while editing one thing
