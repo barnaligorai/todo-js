@@ -8,7 +8,7 @@ const home = (username) => `<html>
   <script src="js/todoActions.js"></script>
   <script src="js/generateElements.js"></script>
   <script src="js/edit.js"></script>
-  <script src="js/lists.js"></script>
+  <script src="js/search.js"></script>
 </head>
 <body>
   <div class="body">
