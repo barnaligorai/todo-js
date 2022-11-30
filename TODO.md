@@ -17,6 +17,7 @@
 
 # DONE
 
+  - [x] Chaneg remote repo
   - [x] Deployed to heroku
   - [x] Consider different place for filter
   - [x] Add favicon
